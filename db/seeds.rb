@@ -73,3 +73,12 @@ require 'csv'
 #   well.operator_id = well_operator.id
 #   well.save
 # end
+
+# populate nd_operators well_count
+# x = NdOperator.all
+
+# x.each do |op|
+#   wc = op.nd_wells.count
+#   op.well_count = wc
+#   op.save
+# end

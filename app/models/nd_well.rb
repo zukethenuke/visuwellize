@@ -3,3 +3,5 @@ class NdWell < ActiveRecord::Base
   belongs_to :nd_operator
 
 end
+
+

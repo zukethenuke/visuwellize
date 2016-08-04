@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   get '/nd' => 'nd_wells#index'
   get '/nd/:id' => 'nd_wells#show'
 
-
+  namespace :api do
+    get '/nd' => 'nd_wells#index'
+    get '/nd/:id' => 'nd_wells#show'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,6 +1,6 @@
 class Api::NdWellsController < ApplicationController
   def index
-    @wells = NdWell.limit(100)
+    @wells = NdWell.includes(:nd_monthly_productions).limit(100).order("RANDOM()")
     render 'index.json.jbuilder'
   end
 

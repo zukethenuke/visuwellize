@@ -5,4 +5,4 @@ json.spud_date well.spud_date
 json.depth well.td
 json.latitude well.latitude
 json.longitude well.longitude
-json.cumulative_oil well.cumulative_oil
+json.cum_oil well.cum_oil

@@ -79,7 +79,7 @@ function scatter(wells) {
     .attr("cx", function(d) { return xScale(d.spud_date); })
     .attr("cy", function(d) { return yScale(d.depth) })
     .attr("r", function(d) { return d.cum_oil / 40000})
-    .on("mouseover", function(d) { pro_bar(d); });
+    .on("mouseover", function(d) { proBar(d); });
   
   d3.select('svg')
   .on('click', function() {

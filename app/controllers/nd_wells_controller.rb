@@ -1,7 +1,7 @@
 class NdWellsController < ApplicationController
 
   def opening_page
-    render 'opening_page2.html.erb'
+    render 'opening_page.html.erb'
   end
 
   def index
@@ -14,9 +14,9 @@ class NdWellsController < ApplicationController
     render 'show.html.erb'
   end
 
-  def scatter
+  def charts
     @wells = NdWell.includes(:nd_monthly_productions).where("cum_oil > ?", 0).limit(100).order("RANDOM()")
-    render 'scatter.html.erb', :layout => false
+    render 'charts.html.erb'
   end
 
 

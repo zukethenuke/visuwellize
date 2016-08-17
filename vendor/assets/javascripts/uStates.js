@@ -71,7 +71,7 @@
       .data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;})
       .style("fill",function(d){ return data[d.id].color; })
       .on("mouseover", mouseOver).on("mouseout", mouseOut)
-      .on("click", function() { window.location="/nd/scatter" });
+      .on("click", function() { window.location="/nd/charts" });
   }
   this.uStates=uStates;
 })();

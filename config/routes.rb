@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get '/' => 'nd_wells#opening_page'
   get '/nd' => 'nd_wells#index'
+  get '/nd/scatter' => 'nd_wells#scatter'
   get '/nd/:id' => 'nd_wells#show'
 
   namespace :api do
     get '/nd' => 'nd_wells#index'
+    get '/nd2' => 'nd_wells#index'
     get '/nd/:id' => 'nd_wells#show'
   end
   # The priority is based upon order of creation: first created -> highest priority.

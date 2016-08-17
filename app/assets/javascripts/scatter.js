@@ -1,4 +1,4 @@
-function update(wells) {
+function scatter(wells) {
 
   var margin = {top: 20, right:20, bottom: 150, left: 62};
   var width = 960 - margin.left - margin.right;
@@ -42,7 +42,8 @@ function update(wells) {
     .scale(yScale)
     .orient("left");
 
-  var svg = d3.select("body").append("svg")
+  // var svg = d3.select("body").append("svg")
+  var svg = d3.select("#scatter")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -75,10 +76,10 @@ function update(wells) {
     .enter()
     .append("circle")
     .attr("class", function(d) { return d.operator; })
-    .attr("cx", function(d, i) { return xScale(d.spud_date); })
-    .attr("cy", function (d) { return yScale(d.depth) })
+    .attr("cx", function(d) { return xScale(d.spud_date); })
+    .attr("cy", function(d) { return yScale(d.depth) })
     .attr("r", function(d) { return d.cum_oil / 40000})
-    .on("mouseover", function(d) { console.log(d); });
+    .on("mouseover", function(d) { pro_bar(d); });
   
   d3.select('svg')
   .on('click', function() {

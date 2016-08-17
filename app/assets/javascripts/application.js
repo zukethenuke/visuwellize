@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require d3
+//= require d3.geo.title.min
+//= require uStates
 //= require_tree .

@@ -1,8 +1,8 @@
 function scatter(wells) {
 
-  var margin = {top: 20, right:20, bottom: 150, left: 62};
+  var margin = {top: 20, right:20, bottom: 100, left: 62};
   var width = 960 - margin.left - margin.right;
-  var height = 500 - margin.top - margin.bottom;
+  var height = 450 - margin.top - margin.bottom;
   
   var fixDate = function(data) {
     format = d3.time.format("%Y-%m-%d");
@@ -14,14 +14,6 @@ function scatter(wells) {
     });
   };
   fixDate(wells);
-
-  console.log('update', wells);
-  var newWells = d3.json("http://localhost:3000/api/nd2.json", function(data) {
-    newWells = data;
-    console.log('it ran');
-    console.log("first newWells: ", newWells);
-  });
-
 
   var xExtent = d3.extent(wells, function(well) { return well.spud_date; });
   var yExtent = d3.extent(wells, function(well) { return well.depth; });
@@ -83,22 +75,24 @@ function scatter(wells) {
   
   d3.select('svg')
   .on('click', function() {
-    d3.json("http://localhost:3000/api/nd.json", function(data) {
-      newWells = data;
-      console.log("second newWells: ",newWells);
-    });
-    fixDate(newWells);
-    svg.selectAll('circle')
-      .data(newWells)
-      .transition()
-      .duration(1000)
-      .delay(function(d,i) { return i / 20; })
-      .attr("class", function(d) { return d.operator; })
-      .attr("cx", function(d, i) { return xScale(d.spud_date); })
-      .attr("cy", function (d) { return yScale(d.depth); })
-      .attr("r", function(d) { return d.cum_oil / 40142; });
-    //            .style("fill", '#00FF00');
+    d3.json("http://localhost:3000/api/nd.json", function(newWells) {
+      fixDate(newWells);
+
+      svg.selectAll('circle')
+        .data(newWells)
+        .transition()
+        .duration(1000)
+        // .delay(function(d,i) { return i / 20; })
+        .attr("class", function(d) { return d.operator; })
+        .attr("cx", function(d) { return xScale(d.spud_date); })
+        .attr("cy", function(d) { return yScale(d.depth); })
+        .attr("r", function(d) { return d.cum_oil / 40142; });
+      //            .style("fill", '#00FF00');
+
+     
+
     
+    });
   });
 
 }

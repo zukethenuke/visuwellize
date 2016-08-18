@@ -6,13 +6,14 @@ function scatter(wells) {
   
   var fixDate = function(data) {
     format = d3.time.format("%Y-%m-%d");
-    data.sort(function(a,b) { return a.depth - b.depth});
+    // data.sort(function(a,b) { return a.depth - b.depth});
     data.forEach(function(d) {
       if (d.spud_date) {
         d.spud_date = format.parse(d.spud_date);
       }
     });
   };
+  fixDate(wells);
 
   console.log('update', wells);
   var newWells = d3.json("http://localhost:3000/api/nd2.json", function(data) {
@@ -21,10 +22,9 @@ function scatter(wells) {
     console.log("first newWells: ", newWells);
   });
 
-  fixDate(wells);
 
-  var xExtent = d3.extent(wells, function(well) { return well.spud_date });
-  var yExtent = d3.extent(wells, function(well) { return well.depth });
+  var xExtent = d3.extent(wells, function(well) { return well.spud_date; });
+  var yExtent = d3.extent(wells, function(well) { return well.depth; });
 
   var xScale = d3.time.scale()
     .range([0, width])

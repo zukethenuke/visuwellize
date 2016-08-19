@@ -1,3 +1,6 @@
+
+
+
 function scatter(wells) {
   console.log("scatter")
 
@@ -70,20 +73,21 @@ function scatter(wells) {
   svg.selectAll("circle")
     .data(wells)
     .enter()
-    .append("circle")
+  .append("circle")
     .attr("class", function(d) { return d.operator; })
     .attr("cx", function(d) { return xScale(d.spud_date); })
     .attr("cy", function(d) { return yScale(d.depth) })
     .attr("r", function(d) { return d.cum_oil / 40000 })
     .style("opacity", .5)
     .on("mouseover", function(d) {
-      d3.select(this).style("fill", "purple");
+      console.log(d)
+      d3.select(this).style("fill", "purple")
       proBar(d);
     })
     .on("mouseout", function(d) {
       d3.select(this).style("fill", "")
-    })
-    
+    });
+
 
   d3.select('svg')
   .on('click', function() {

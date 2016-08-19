@@ -21,8 +21,8 @@ function proBar(well) {
     var xExtent = d3.extent(well.monthlys, function(d) { return d.date; });
     var yExtent = d3.extent(well.monthlys, function(d) { return d.bbls_oil; });
 
-    console.log("x", xExtent);
-    console.log("y", yExtent);
+    // console.log("x", xExtent);
+    // console.log("y", yExtent);
 
     var xScale = d3.time.scale()
       .range([0, width])

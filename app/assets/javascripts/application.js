@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular
+//= require app
 //= require d3
 //= require uStates
 //= require_tree .

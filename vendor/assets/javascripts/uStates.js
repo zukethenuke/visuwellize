@@ -60,6 +60,7 @@
       
       d3.select("#tooltip").html(toolTip(d.n, data[d.id]))  
         .style("left", (d3.event.pageX) + "px")     
+        .style("width", 100 + "px")     
         .style("top", (d3.event.pageY - 28) + "px");
     }
     

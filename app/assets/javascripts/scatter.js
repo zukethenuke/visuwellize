@@ -1,4 +1,8 @@
 function scatter(wells) {
+  console.log("scatter")
+
+
+  d3.select(".axis").remove();
 
   var margin = {top: 20, right:20, bottom: 100, left: 62};
   var width = 960 - margin.left - margin.right;
@@ -6,7 +10,7 @@ function scatter(wells) {
   
   var fixDate = function(data) {
     format = d3.time.format("%Y-%m-%d");
-    // data.sort(function(a,b) { return a.depth - b.depth});
+    data.sort(function(a,b) { return b.cum_oil - a.cum_oil});
     data.forEach(function(d) {
       if (d.spud_date) {
         d.spud_date = format.parse(d.spud_date);
@@ -70,11 +74,20 @@ function scatter(wells) {
     .attr("class", function(d) { return d.operator; })
     .attr("cx", function(d) { return xScale(d.spud_date); })
     .attr("cy", function(d) { return yScale(d.depth) })
-    .attr("r", function(d) { return d.cum_oil / 40000})
-    .on("mouseover", function(d) { proBar(d); });
-  
+    .attr("r", function(d) { return d.cum_oil / 40000 })
+    .style("opacity", .5)
+    .on("mouseover", function(d) {
+      d3.select(this).style("fill", "purple");
+      proBar(d);
+    })
+    .on("mouseout", function(d) {
+      d3.select(this).style("fill", "")
+    })
+    
+
   d3.select('svg')
   .on('click', function() {
+    // d3.json("http://localhost:3000/api/nd.json", scatter)
     d3.json("http://localhost:3000/api/nd.json", function(newWells) {
       fixDate(newWells);
 
@@ -89,8 +102,7 @@ function scatter(wells) {
         .attr("r", function(d) { return d.cum_oil / 40142; });
       //            .style("fill", '#00FF00');
 
-     
-
+    
     
     });
   });

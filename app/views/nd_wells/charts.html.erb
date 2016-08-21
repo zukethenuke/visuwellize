@@ -1,51 +1,42 @@
-<!-- <!DOCTYPE html> -->
-<!-- <head> -->
-  <!-- <meta charset="utf-8"> -->
+<style>
+  body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+  
+  .axis path {
+    fill: none;
+    stroke: black;
+    shape-rendering: crisp;
+  }
+  
+  .axis text {
+    font-family: sans-serif;
+    font-size: 15px;
+  }
+</style>
 
-  <style>
-    /*body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }*/
-    
-    .axis path {
-      fill: none;
-      stroke: black;
-      shape-rendering: crisp;
-    }
-    
-    .axis text {
-      font-family: sans-serif;
-      font-size: 15px;
-    }
-    
-  </style>
-<!-- </head> -->
+<div ng-controller="scatterCtrl" ng-init="setup()">
+ 
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Filter Circles</a>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
 
-<!-- <body> -->
+      <h4>Operators List</h4>
+      <div ng-repeat="operator in operators">
+        <p>{{ operator }}</p>
+      </div>
 
-<!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Filter Circles</a>
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
   </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            
+
+  <div>
+    <svg id="scatter"></svg>
+  </div>
+  <div>
+    <svg id="production_bar"></svg>
   </div>
 </div>
-          
-
-<div>
-  <svg id="scatter"></svg>
-</div>
-<div>
-  <svg id="production_bar"></svg>
-</div>
-
-<script>
-  // Feel free to change or delete any of the code you see in this editor!
-d3.json("http://localhost:3000/api/nd.json", scatter);
-    
-</script>
-<!-- </body> -->

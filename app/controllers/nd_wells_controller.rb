@@ -17,6 +17,7 @@ class NdWellsController < ApplicationController
   def charts
     # @wells = NdWell.includes(:nd_monthly_productions).where("cum_oil > ?", 0).limit(100).order("RANDOM()")
     @wells = NdWell.where("cum_oil > ?", 0).limit(100).order("RANDOM()")
+    # @wells = NdWell.joins(:NdOperator).where("well_count > ? AND cum_oil > ?", 50, 0)
     render 'charts.html.erb'
   end
 

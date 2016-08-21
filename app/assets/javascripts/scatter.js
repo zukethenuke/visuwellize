@@ -2,10 +2,14 @@
 
 
 function scatter(wells) {
-  console.log("scatter")
 
-
-  d3.select(".axis").remove();
+  var opNameList = [];
+  wells.forEach(function(well) {
+    if (opNameList.indexOf(well.operator) === -1) {
+     opNameList.push(well.operator)
+    }
+  });
+  // console.log(opNameList);
 
   var margin = {top: 20, right:20, bottom: 100, left: 62};
   var width = 960 - margin.left - margin.right;
@@ -13,7 +17,7 @@ function scatter(wells) {
   
   var fixDate = function(data) {
     format = d3.time.format("%Y-%m-%d");
-    data.sort(function(a,b) { return b.cum_oil - a.cum_oil});
+    data.sort(function(a,b) { return b.cum_oil - a.cum_oil}); // sort so largest wells deiplay first and on bottom
     data.forEach(function(d) {
       if (d.spud_date) {
         d.spud_date = format.parse(d.spud_date);

@@ -10,14 +10,18 @@
     };
 
     $scope.scatter = function(wells) {
-      // console.log(wells);
-      $scope.operators = [];
-      wells.forEach(function(well) {
-        if ($scope.operators.indexOf(well.operator) === -1) {
-          $scope.operators.push(well.operator);
-        }
-      });
-      console.log($scope.operators);
+
+      var generateOperatorList = function(wells) {
+        $scope.operators = [];
+        wells.forEach(function(well) {
+          if ($scope.operators.indexOf(well.operator) === -1) {
+            $scope.operators.push(well.operator);
+          }
+        });
+        $scope.$apply();
+      };
+
+      generateOperatorList(wells);
 
       var margin = {top: 20, right:20, bottom: 100, left: 62};
       var width = 960 - margin.left - margin.right;
@@ -25,9 +29,9 @@
       
       var fixDate = function(data) {
         var format = d3.time.format("%Y-%m-%d");
-        data.sort(function(a,b) {
+        data.sort(function(a,b) { // sort so largest wells deiplay first and on bottom
           return b.cum_oil - a.cum_oil;
-        }); // sort so largest wells deiplay first and on bottom
+        }); 
         data.forEach(function(d) {
           if (d.spud_date) {
             d.spud_date = format.parse(d.spud_date);
@@ -55,7 +59,6 @@
         .scale(yScale)
         .orient("left");
 
-      // var svg = d3.select("body").append("svg")
       var svg = d3.select("#scatter")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -108,6 +111,7 @@
         // d3.json("http://localhost:3000/api/nd.json", scatter)
         d3.json("http://localhost:3000/api/nd.json", function(newWells) {
           fixDate(newWells);
+          generateOperatorList(newWells);
 
           svg.selectAll('circle')
             .data(newWells)
@@ -119,17 +123,15 @@
             .attr("cy", function(d) { return yScale(d.depth); })
             .attr("r", function(d) { return d.cum_oil / 40142; });
           //            .style("fill", '#00FF00');
-
-        
         
         });
       });
 
-    }
+    };
 
 
 
-     
+    window.$scope = $scope;
 
   });
 })();

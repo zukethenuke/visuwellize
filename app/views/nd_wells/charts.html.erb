@@ -14,17 +14,16 @@
 </style>
 
 <div ng-controller="scatterCtrl" ng-init="setup()">
+
  
   <!-- Modal Trigger -->
   <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Filter Circles</a>
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
 
-      <h4>Operators List</h4>
-      <div ng-repeat="operator in operators">
-        <p>{{ operator }}</p>
-      </div>
+      <h4>Operator List</h4>
+      <p ng-repeat="operator in operators">{{ operator }}</p>
 
     </div>
     <div class="modal-footer">
@@ -32,11 +31,11 @@
     </div>
   </div>
             
-
   <div>
     <svg id="scatter"></svg>
   </div>
   <div>
     <svg id="production_bar"></svg>
   </div>
+
 </div>

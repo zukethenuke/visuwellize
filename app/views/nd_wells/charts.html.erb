@@ -1,5 +1,5 @@
 <style>
-  body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+  /*body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }*/
   
   .axis path {
     fill: none;
@@ -17,17 +17,18 @@
 
  
   <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Filter Circles</a>
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1" >Filter Circles</a>
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
-
-      <h4>Operator List</h4>
-      <p ng-repeat="operator in operators">{{ operator }}</p>
-
+    {{ operatorsObject }}
+      <div ng-repeat="operator in operatorsArray"> 
+        <input type="checkbox" id="{{ operator }}" ng-model="operatorsObject[operator]"/> 
+        <label for="{{ operator }}">{{ operator }}</label>
+      </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
   </div>
             

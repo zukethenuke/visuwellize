@@ -9,19 +9,41 @@
       d3.json("http://localhost:3000/api/nd.json", $scope.scatter);
     };
 
+    // $scope.call = function() {
+    //   params = {
+
+    //   }
+    //   $http.get("localhost:3000/api/nd", params).then(function(response) {
+    //     var newData = response.data;
+    //   }, function(errors) {
+
+    //   })
+    // };
+
     $scope.scatter = function(wells) {
 
       var generateOperatorList = function(wells) {
-        $scope.operators = [];
+        $scope.operatorsArray = [];
         wells.forEach(function(well) {
-          if ($scope.operators.indexOf(well.operator) === -1) {
-            $scope.operators.push(well.operator);
+          if ($scope.operatorsArray.indexOf(well.operator) === -1) {
+            $scope.operatorsArray.push(well.operator);
           }
         });
+        convertOperatorListToObject();
+        console.log($scope.operatorsArray);
         $scope.$apply();
       };
 
+      var convertOperatorListToObject = function() {
+        $scope.operatorsObject = {};
+        $scope.operatorsArray.forEach(function(operator) {
+          $scope.operatorsObject[operator] = false;
+        });
+        console.log($scope.operatorsObject);
+      };
+
       generateOperatorList(wells);
+      $scope.selectedOperators = [];
 
       var margin = {top: 20, right:20, bottom: 100, left: 62};
       var width = 960 - margin.left - margin.right;
@@ -31,7 +53,7 @@
         var format = d3.time.format("%Y-%m-%d");
         data.sort(function(a,b) { // sort so largest wells deiplay first and on bottom
           return b.cum_oil - a.cum_oil;
-        }); 
+        });
         data.forEach(function(d) {
           if (d.spud_date) {
             d.spud_date = format.parse(d.spud_date);
@@ -97,12 +119,12 @@
         .attr("r", function(d) { return d.cum_oil / 40000 })
         .style("opacity", .5)
         .on("mouseover", function(d) {
-          console.log(d)
-          d3.select(this).style("fill", "purple")
+          console.log(d);
+          d3.select(this).style("fill", "purple");
           proBar(d);
         })
         .on("mouseout", function(d) {
-          d3.select(this).style("fill", "")
+          d3.select(this).style("fill", "");
         });
 
 
@@ -129,9 +151,10 @@
 
     };
 
-
+    // $scope.$apply();
 
     window.$scope = $scope;
 
   });
+  // $scope.$apply();
 })();

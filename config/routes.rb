@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/nd' => 'nd_wells#index'
-    get '/nd2' => 'nd_wells#index'
+    # get '/nd2' => 'nd_wells#index'
     get '/nd/:id' => 'nd_wells#show'
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,3 +1,5 @@
+/* global d3 */
+
 function proBar(well) {
   d3.json("http://localhost:3000/api/nd/" + well.id, function(well) {
 
@@ -10,7 +12,7 @@ function proBar(well) {
     // well.spud_date = d3.time.format("%Y-%m-%d").parse(well.spud_date);
 
     var fixDate = function(well) {
-      format = d3.time.format("%Y-%m-%d");
+      var format = d3.time.format("%Y-%m-%d");
       // data.sort(function(a,b) { return a.depth - b.depth});
       well.monthlys.forEach(function(d) {
         d.date = format.parse(d.date);

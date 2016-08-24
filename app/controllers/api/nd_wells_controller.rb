@@ -8,10 +8,19 @@ class Api::NdWellsController < ApplicationController
     @wells = NdWell.joins(:nd_operator).where("well_count > ? AND cum_oil > ?", 50, 0).limit(100).order("RANDOM()")
 
     render 'index.json.jbuilder'
+
+    # render json: {message: "hellooooooo"}  # from nd_wells_api app
+
   end
 
   def show
     @well = NdWell.includes(:nd_monthly_productions).find_by(id: params[:id])
     render 'show.json.jbuilder'
   end
+
+  def operators
+    @operators = NdOperator.all
+    render 'operators.json.jbuilder'
+  end
+
 end

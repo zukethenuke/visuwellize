@@ -43,6 +43,7 @@
       // };
 
       // generateOperatorList(wells);
+      // $scope.selectedOperators = [];
 
       var checkedOperatorGetList = function() {
 
@@ -54,13 +55,25 @@
           $scope.completeOperatorList.forEach(function(operator) {
             operator.checked = false;
           });
+          $scope.completeOperatorList.sort(function(a,b) {
+            return a.id - b.id;
+          });
           console.log('all ops', $scope.completeOperatorList);
         });
       };
 
       getCompleteOperatorList();
+
+      $scope.setOrderAttribute = function(inputAttribute) {
+        console.log('clicked');
+        if ($scope.orderAttribute !== inputAttribute) { // clicked on a different button
+          $scope.isOrderDescending = false;
+        }else { // clicked on the same button
+          $scope.isOrderDescending = !$scope.isOrderDescending;
+        }
+        $scope.orderAttribute = inputAttribute;
+      };
       
-      $scope.selectedOperators = [];
 
       var margin = {top: 20, right:20, bottom: 100, left: 62};
       var width = 960 - margin.left - margin.right;

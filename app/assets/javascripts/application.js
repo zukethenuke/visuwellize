@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require angular
 //= require app
-//= require checklist-model
 //= require d3
 //= require uStates
+//= require nouislider
 //= require_tree .

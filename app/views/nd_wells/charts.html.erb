@@ -27,16 +27,35 @@
       <div class="row">
       <div class="col s8">
         <h5>Oil Companies</h5>
-        <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter}"> 
+        <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter} | orderBy:orderAttribute:isOrderDescending"> 
         <input type="checkbox" class="operatorList" id="{{ operator.id }}" ng-model="operator.checked"/> 
         <label for="{{ operator.id }}", class="operatorName">{{ operator.name }} ( {{ operator.wellCount }} )</label>
       </div>
       </div>
       <div class="col s4">
-        <h5>Filter Options</h5>
-        <label>Search by name:</label>
-        <input ng-model="nameFilter">
-
+        <div>
+          <h5>Filter Options</h5>
+          <p>Search by name:</p>
+          <input ng-model="nameFilter">
+        </div>
+        <div>
+          <p>Sort by:</p>
+          <form action="#">
+            <p>
+              <input class="with-gap"name="group1" type="radio" id="operatorName" ng-click="setOrderAttribute('name')"/>
+              <label for="operatorName">Name</label>
+            </p>
+            <p>
+              <input class="with-gap" name="group1" type="radio" id="operatorWellCount" ng-click="setOrderAttribute('wellCount')"/>
+              <label for="operatorWellCount">Number of wells</label>
+            </p>
+            <p>
+              <input class="with-gap" name="group1" type="radio" id="operatorId"  ng-click="setOrderAttribute('id')"/>
+              <label for="operatorId">Date of first well</label>
+            </p>
+            
+          </form>
+        </div>
       </div>
     </div>
     </div>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/nd' => 'nd_wells#index'
+    post '/nd' => 'nd_wells#index'
+    get '/nd/operators' => 'nd_wells#operators'
     # get '/nd2' => 'nd_wells#index'
     get '/nd/:id' => 'nd_wells#show'
   end

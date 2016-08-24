@@ -3,7 +3,7 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("scatterCtrl", function($scope) {
+  angular.module("app").controller("scatterCtrl", function($scope, $http) {
     
     $scope.setup = function() {
       d3.json("http://localhost:3000/api/nd.json", $scope.scatter);
@@ -22,27 +22,44 @@
 
     $scope.scatter = function(wells) {
 
-      var generateOperatorList = function(wells) {
-        $scope.operatorsArray = [];
-        wells.forEach(function(well) {
-          if ($scope.operatorsArray.indexOf(well.operator) === -1) {
-            $scope.operatorsArray.push(well.operator);
-          }
-        });
-        convertOperatorListToObject();
-        console.log($scope.operatorsArray);
-        $scope.$apply();
+      // var generateOperatorList = function(wells) {
+      //   $scope.operatorsArray = [];
+      //   wells.forEach(function(well) {
+      //     if ($scope.operatorsArray.indexOf(well.operator) === -1) {
+      //       $scope.operatorsArray.push(well.operator);
+      //     }
+      //   });
+      //   convertOperatorListToObject();
+      //   console.log($scope.operatorsArray);
+      //   $scope.$apply();
+      // };
+
+      // var convertOperatorListToObject = function() {
+      //   $scope.operatorsObject = {};
+      //   $scope.operatorsArray.forEach(function(operator) {
+      //     $scope.operatorsObject[operator] = false;
+      //   });
+      //   console.log($scope.operatorsObject);
+      // };
+
+      // generateOperatorList(wells);
+
+      var checkedOperatorGetList = function() {
+
       };
 
-      var convertOperatorListToObject = function() {
-        $scope.operatorsObject = {};
-        $scope.operatorsArray.forEach(function(operator) {
-          $scope.operatorsObject[operator] = false;
+      var getCompleteOperatorList = function() {
+        $http.get('http://localhost:3000/api/nd/operators.json').then(function(response) {
+          $scope.completeOperatorList = response.data;
+          $scope.completeOperatorList.forEach(function(operator) {
+            operator.checked = false;
+          });
+          console.log('all ops', $scope.completeOperatorList);
         });
-        console.log($scope.operatorsObject);
       };
 
-      generateOperatorList(wells);
+      getCompleteOperatorList();
+      
       $scope.selectedOperators = [];
 
       var margin = {top: 20, right:20, bottom: 100, left: 62};

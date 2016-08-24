@@ -1,6 +1,9 @@
 <style>
   /*body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }*/
-  
+  .operatorName {
+    /*color: black;*/
+  }
+
   .axis path {
     fill: none;
     stroke: black;
@@ -15,22 +18,33 @@
 
 <div ng-controller="scatterCtrl" ng-init="setup()">
 
- 
   <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1" >Filter Circles</a>
+  <a class="modal-trigger waves-effect waves-light btn" href="#modalFilter">Filter</a>
+
   <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
+  <div id="modalFilter" class="modal modal-fixed-footer">
     <div class="modal-content">
-    {{ operatorsObject }}
-      <div ng-repeat="operator in operatorsArray"> 
-        <input type="checkbox" id="{{ operator }}" ng-model="operatorsObject[operator]"/> 
-        <label for="{{ operator }}">{{ operator }}</label>
+      <div class="row">
+      <div class="col s8">
+        <h5>Oil Companies</h5>
+        <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter}"> 
+        <input type="checkbox" class="operatorList" id="{{ operator.id }}" ng-model="operator.checked"/> 
+        <label for="{{ operator.id }}", class="operatorName">{{ operator.name }} ( {{ operator.wellCount }} )</label>
+      </div>
+      </div>
+      <div class="col s4">
+        <h5>Filter Options</h5>
+        <label>Search by name:</label>
+        <input ng-model="nameFilter">
+
       </div>
     </div>
+    </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
     </div>
   </div>
+          
             
   <div>
     <svg id="scatter"></svg>

@@ -35,14 +35,14 @@
       <div class="col s4">
         <div>
           <h5>Filter Options</h5>
-          <p>Search by name:</p>
-          <input ng-model="nameFilter">
+          <p>Search by:</p>
+          <input placeholder="Company name" ng-model="nameFilter">
         </div>
         <div>
           <p>Sort by:</p>
           <form action="#">
             <p>
-              <input class="with-gap"name="group1" type="radio" id="operatorName" ng-click="setOrderAttribute('name')"/>
+              <input class="with-gap" name="group1" type="radio" id="operatorName" ng-click="setOrderAttribute('name')"/>
               <label for="operatorName">Name</label>
             </p>
             <p>
@@ -53,9 +53,15 @@
               <input class="with-gap" name="group1" type="radio" id="operatorId"  ng-click="setOrderAttribute('id')"/>
               <label for="operatorId">Date of first well</label>
             </p>
-            
           </form>
         </div>
+          <div>
+            <form action="#">
+            <p class="range-field">
+              <input type="range" id="slider"/>
+            </p>
+          </form>
+          </div>
       </div>
     </div>
     </div>

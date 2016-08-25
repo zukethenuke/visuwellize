@@ -65,7 +65,6 @@
       getCompleteOperatorList();
 
       $scope.setOrderAttribute = function(inputAttribute) {
-        console.log('clicked');
         if ($scope.orderAttribute !== inputAttribute) { // clicked on a different button
           $scope.isOrderDescending = false;
         }else { // clicked on the same button
@@ -73,7 +72,6 @@
         }
         $scope.orderAttribute = inputAttribute;
       };
-      
 
       var margin = {top: 20, right:20, bottom: 100, left: 62};
       var width = 960 - margin.left - margin.right;
@@ -163,7 +161,6 @@
         // d3.json("http://localhost:3000/api/nd.json", scatter)
         d3.json("http://localhost:3000/api/nd.json", function(newWells) {
           fixDate(newWells);
-          generateOperatorList(newWells);
 
           svg.selectAll('circle')
             .data(newWells)

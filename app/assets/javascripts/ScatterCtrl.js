@@ -6,73 +6,61 @@
   angular.module("app").controller("scatterCtrl", function($scope, $http) {
     
     $scope.setup = function() {
-      d3.json("http://localhost:3000/api/nd.json", $scope.scatter);
+      d3.json("/api/nd.json", $scope.scatter);
     };
 
-    // $scope.call = function() {
-    //   params = {
+    $('.modal-trigger').leanModal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      in_duration: 300, // Transition in duration
+      out_duration: 200, // Transition out duration
+      starting_top: '4%', // Starting top style attribute
+      ending_top: '10%', // Ending top style attribute
+      // ready: function() { alert('Ready'); }, // Callback for Modal open
+      complete: function() { getNewWells() } // Callback for Modal close
+      }
+    );
 
-    //   }
-    //   $http.get("localhost:3000/api/nd", params).then(function(response) {
-    //     var newData = response.data;
-    //   }, function(errors) {
+    var getNewWells = function() {
+      var params = {};
+      params.operatorList = $scope.completeOperatorList;
+      console.log(params);
+      $http.post("/api/nd", params).then(function(response) {
+        console.log('response', response);
+        $scope.scatter(response.data);
+      }, function(errors) {
 
-    //   })
-    // };
+      });
+    };
+
+    var getCompleteOperatorList = function() {
+      $http.get('/api/nd/operators.json').then(function(response) {
+        $scope.completeOperatorList = response.data;
+        $scope.completeOperatorList.forEach(function(operator) {
+          operator.checked = false;
+        });
+        $scope.completeOperatorList.sort(function(a,b) {
+          return a.id - b.id;
+        });
+      });
+    };
+
+    getCompleteOperatorList();
+
+    $scope.setOrderAttribute = function(inputAttribute) {
+      if ($scope.orderAttribute !== inputAttribute) { // clicked on a different button
+        $scope.isOrderDescending = false;
+      }else { // clicked on the same button
+        $scope.isOrderDescending = !$scope.isOrderDescending;
+      }
+      $scope.orderAttribute = inputAttribute;
+    };
 
     $scope.scatter = function(wells) {
 
-      // var generateOperatorList = function(wells) {
-      //   $scope.operatorsArray = [];
-      //   wells.forEach(function(well) {
-      //     if ($scope.operatorsArray.indexOf(well.operator) === -1) {
-      //       $scope.operatorsArray.push(well.operator);
-      //     }
-      //   });
-      //   convertOperatorListToObject();
-      //   console.log($scope.operatorsArray);
-      //   $scope.$apply();
-      // };
-
-      // var convertOperatorListToObject = function() {
-      //   $scope.operatorsObject = {};
-      //   $scope.operatorsArray.forEach(function(operator) {
-      //     $scope.operatorsObject[operator] = false;
-      //   });
-      //   console.log($scope.operatorsObject);
-      // };
-
-      // generateOperatorList(wells);
-      // $scope.selectedOperators = [];
-
-      var checkedOperatorGetList = function() {
-
-      };
-
-      var getCompleteOperatorList = function() {
-        $http.get('http://localhost:3000/api/nd/operators.json').then(function(response) {
-          $scope.completeOperatorList = response.data;
-          $scope.completeOperatorList.forEach(function(operator) {
-            operator.checked = false;
-          });
-          $scope.completeOperatorList.sort(function(a,b) {
-            return a.id - b.id;
-          });
-          console.log('all ops', $scope.completeOperatorList);
-        });
-      };
-
-      getCompleteOperatorList();
-
-      $scope.setOrderAttribute = function(inputAttribute) {
-        if ($scope.orderAttribute !== inputAttribute) { // clicked on a different button
-          $scope.isOrderDescending = false;
-        }else { // clicked on the same button
-          $scope.isOrderDescending = !$scope.isOrderDescending;
-        }
-        $scope.orderAttribute = inputAttribute;
-      };
-
+      d3.selectAll('g').remove();
+      d3.selectAll('circle').remove();
+      
       var margin = {top: 20, right:20, bottom: 100, left: 62};
       var width = 960 - margin.left - margin.right;
       var height = 450 - margin.top - margin.bottom;
@@ -158,8 +146,8 @@
 
       d3.select('svg')
       .on('click', function() {
-        // d3.json("http://localhost:3000/api/nd.json", scatter)
-        d3.json("http://localhost:3000/api/nd.json", function(newWells) {
+        // d3.json("/api/nd.json", scatter)
+        d3.json("/api/nd.json", function(newWells) {
           fixDate(newWells);
 
           svg.selectAll('circle')

@@ -16,5 +16,4 @@
 //= require app
 //= require d3
 //= require uStates
-//= require nouislider
 //= require_tree .

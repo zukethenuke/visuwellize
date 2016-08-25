@@ -1,7 +1,7 @@
 class NdWellsController < ApplicationController
 
   def opening_page
-    render 'opening_page.html.erb'
+    render 'us_map.html.erb'
   end
 
   def index

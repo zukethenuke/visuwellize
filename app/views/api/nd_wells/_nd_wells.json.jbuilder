@@ -6,3 +6,4 @@ json.depth well.td
 json.latitude well.latitude
 json.longitude well.longitude
 json.cum_oil well.cum_oil
+json.NdOperatorId well.nd_operator_id

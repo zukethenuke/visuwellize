@@ -80,21 +80,22 @@
 
       var assignColorToWellByCompany = function(wells) {
         var companyArray = [];
-        var companyColorObj = {}; //make this an array and push hashes to it
+        var companyColorArray = [];
         for (var i = 0; i < wells.length; i++) {
           if (companyArray.indexOf(wells[i].operator) === -1) {
             companyArray.push(wells[i].operator);
-            companyColorObj[wells[i].operator] = randomColor();
+            companyColorArray.push([{company: wells[i].operator}, {color: randomColor()}]);
           }
         }
-        console.log('colors', companyColorObj);
-
-        // wells.map(function(well) {
-
-        // })
-        
+        wells.forEach(function(well) {
+          companyColorArray.forEach(function(d) {
+            if (well.operator === d[0].company) {
+              well.color = d[1].color;
+            }
+          });
+          console.log(well);
+        });
       };
-
       assignColorToWellByCompany(wells);
 
       var xExtent = d3.extent(wells, function(well) { return well.spud_date; });
@@ -156,40 +157,31 @@
         .style("fill", function(d) { return d.color; })
         .on("mouseover", function(d) {
           console.log(d);
-          d3.select(this).style("fill", "purple");
+          d3.select(this).style("fill", "grey");
           proBar(d);
         })
         .on("mouseout", function(d) {
-          d3.select(this).style("fill", "");
+          d3.select(this).style("fill", d.color);
         });
-
 
       d3.select('svg')
       .on('click', function() {
-        // d3.json("/api/nd.json", scatter)
         d3.json("/api/nd.json", function(newWells) {
           fixDate(newWells);
+          assignColorToWellByCompany(newWells);
 
           svg.selectAll('circle')
             .data(newWells)
             .transition()
             .duration(1000)
-            // .delay(function(d,i) { return i / 20; })
             .attr("class", function(d) { return d.operator; })
             .attr("cx", function(d) { return xScale(d.spud_date); })
             .attr("cy", function(d) { return yScale(d.depth); })
-            .attr("r", function(d) { return d.cum_oil / 40142; });
-          //            .style("fill", '#00FF00');
-        
+            .attr("r", function(d) { return d.cum_oil / 40142; })
+            .style("fill", function(d) { return d.color; });
         });
       });
-
     };
-
-    // $scope.$apply();
-
     window.$scope = $scope;
-
   });
-  // $scope.$apply();
 })();

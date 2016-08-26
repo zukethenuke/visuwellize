@@ -9,8 +9,6 @@ function proBar(well) {
     var width = 960 - margin.left - margin.right;
     var height = 300 - margin.top - margin.bottom;
 
-    // well.spud_date = d3.time.format("%Y-%m-%d").parse(well.spud_date);
-
     var fixDate = function(well) {
       var format = d3.time.format("%Y-%m-%d");
       // data.sort(function(a,b) { return a.depth - b.depth});
@@ -22,9 +20,6 @@ function proBar(well) {
 
     var xExtent = d3.extent(well.monthlys, function(d) { return d.date; });
     var yExtent = d3.extent(well.monthlys, function(d) { return d.bbls_oil; });
-
-    // console.log("x", xExtent);
-    // console.log("y", yExtent);
 
     var xScale = d3.time.scale()
       .range([0, width])
@@ -41,7 +36,6 @@ function proBar(well) {
     var yAxis = d3.svg.axis()
       .scale(yScale)
       .orient("left");
-
 
     var svg = d3.select("#production_bar")
       .attr("width", width + margin.left + margin.right)
@@ -82,9 +76,7 @@ function proBar(well) {
       .attr("x", function(d) { return xScale(d.date); })
       .attr("width", 2)
       .attr("y", function(d) { return yScale(d.bbls_oil); })
-      .attr("height", function(d) { return height - yScale(d.bbls_oil); });
-
-
-
+      .attr("height", function(d) { return height - yScale(d.bbls_oil); })
+      .style("fill", 'steelblue');
   });
 }

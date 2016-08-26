@@ -78,6 +78,25 @@
       };
       fixDate(wells);
 
+      var assignColorToWellByCompany = function(wells) {
+        var companyArray = [];
+        var companyColorObj = {}; //make this an array and push hashes to it
+        for (var i = 0; i < wells.length; i++) {
+          if (companyArray.indexOf(wells[i].operator) === -1) {
+            companyArray.push(wells[i].operator);
+            companyColorObj[wells[i].operator] = randomColor();
+          }
+        }
+        console.log('colors', companyColorObj);
+
+        // wells.map(function(well) {
+
+        // })
+        
+      };
+
+      assignColorToWellByCompany(wells);
+
       var xExtent = d3.extent(wells, function(well) { return well.spud_date; });
       var yExtent = d3.extent(wells, function(well) { return well.depth; });
 
@@ -134,6 +153,7 @@
         .attr("cy", function(d) { return yScale(d.depth) })
         .attr("r", function(d) { return d.cum_oil / 40000 })
         .style("opacity", .5)
+        .style("fill", function(d) { return d.color; })
         .on("mouseover", function(d) {
           console.log(d);
           d3.select(this).style("fill", "purple");

@@ -58,7 +58,8 @@
 
       d3.selectAll('g').remove();
       d3.selectAll('circle').remove();
-      
+      d3.selectAll('.tooltip').remove();
+
       var margin = {top: 20, right:20, bottom: 100, left: 62};
       var width = 960 - margin.left - margin.right;
       var height = 450 - margin.top - margin.bottom;
@@ -94,6 +95,12 @@
         });
       };
       assignColorToWellByCompany(wells);
+
+      var toolTip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+      var formatComma = d3.format(",");
 
       var xExtent = d3.extent(wells, function(well) { return well.spud_date; });
       var yExtent = d3.extent(wells, function(well) { return well.depth; });
@@ -153,12 +160,23 @@
         .style("opacity", .5)
         .style("fill", function(d) { return d.color; })
         .on("mouseover", function(d) {
-          console.log(d);
-          d3.select(this).style("fill", "grey");
+          d3.select(this)
+            .style("stroke", "black")
+            .style("stroke-width", 3);
+          toolTip.transition()
+            .duration(200)
+            .style("opacity", .9);
+          toolTip.html(d.operator + "<br> Depth: " + d.depth + " feet<br>Total Oil Output: " + formatComma(d.cum_oil) + " bbls")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY) - 85 + "px");
           proBar(d);
         })
         .on("mouseout", function(d) {
-          d3.select(this).style("fill", d.color);
+          d3.select(this).style("stroke", "");
+          d3.select('.tooltip')
+            .transition()
+            .duration(500)
+            .style("opacity", 0);
         });
 
       d3.select('svg')

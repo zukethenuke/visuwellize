@@ -16,4 +16,5 @@
 //= require app
 //= require d3
 //= require uStates
+//= require randomColor
 //= require_tree .

@@ -5,10 +5,9 @@ class Api::NdWellsController < ApplicationController
 
       checked_operators = NdOperator.find_checked_operators_in_params(params[:operatorList])
       puts checked_operators
-      @wells = NdWell.where(nd_operator_id: checked_operators)
+      @wells = NdWell.where(nd_operator_id: checked_operators).where('cum_oil > 0 AND td > 1')
       puts 'new wells'
       puts @wells
-      # render json: {message: "hellooooooo"}
       render 'index.json.jbuilder'
     else
     # @wells = NdWell.includes(:nd_monthly_productions).where("cum_oil > ?", 0).limit(100).order("RANDOM()")

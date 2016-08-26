@@ -24,9 +24,7 @@
     var getNewWells = function() {
       var params = {};
       params.operatorList = $scope.completeOperatorList;
-      console.log(params);
       $http.post("/api/nd", params).then(function(response) {
-        console.log('response', response);
         $scope.scatter(response.data);
       }, function(errors) {
 
@@ -93,7 +91,6 @@
               well.color = d[1].color;
             }
           });
-          console.log(well);
         });
       };
       assignColorToWellByCompany(wells);

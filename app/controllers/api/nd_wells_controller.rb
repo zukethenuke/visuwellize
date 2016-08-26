@@ -5,14 +5,14 @@ class Api::NdWellsController < ApplicationController
 
       checked_operators = NdOperator.find_checked_operators_in_params(params[:operatorList])
       puts checked_operators
-      @wells = NdWell.where(nd_operator_id: checked_operators).where('cum_oil > 0 AND td > 1')
+      @wells = NdWell.where(nd_operator_id: checked_operators).where('cum_oil > 0 AND td IS NOT NULL')
       puts 'new wells'
       puts @wells
       render 'index.json.jbuilder'
     else
     # @wells = NdWell.includes(:nd_monthly_productions).where("cum_oil > ?", 0).limit(100).order("RANDOM()")
     # @wells = NdWell.where("cum_oil > ?", 0).limit(100).order("RANDOM()")
-      @wells = NdWell.joins(:nd_operator).where("well_count > ? AND cum_oil > ?", 50, 0).limit(100).order("RANDOM()")
+      @wells = NdWell.joins(:nd_operator).where("well_count > ? AND cum_oil > ? AND td IS NOT NULL", 50, 0).limit(100).order("RANDOM()")
       render 'index.json.jbuilder'
     end
   end

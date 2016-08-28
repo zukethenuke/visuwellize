@@ -1,5 +1,6 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css' rel='stylesheet' />
+        
 <style>
   /*body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }*/
   .operatorName {
@@ -100,19 +101,12 @@
   </div>
   <div id="map"></div>
 
-  <script>
-
-  // initialize the map
-  var map = L.map('map').setView([42.35, -100.08], 13);
-
-  // load a tile layer
-  // L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
-    // {
-      // attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
-    //   maxZoom: 17,
-    //   minZoom: 9
-    // }).addTo(map);
-
-  </script>
-
+<div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoienVrZXRoZW51a2UiLCJhIjoiY2lzZXl4bzkzMDBkazJzbnZpM2VtaDBqZyJ9.dG7pNd-7WKeW_3rEcq6Iqg';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9'
+  });
+</script>
 </div>

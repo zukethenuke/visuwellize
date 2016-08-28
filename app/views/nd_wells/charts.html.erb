@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <style>
   /*body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }*/
   .operatorName {
@@ -25,6 +27,12 @@
     background: lightsteelblue;
     border: 0px;
     border-radius: 8px;
+    z-index: -1;
+  }
+
+  #map{ 
+    height: 75%;
+    width: 75%;
   }
 
 </style>
@@ -90,5 +98,21 @@
   <div>
     <svg id="production_bar"></svg>
   </div>
+  <div id="map"></div>
+
+  <script>
+
+  // initialize the map
+  var map = L.map('map').setView([42.35, -100.08], 13);
+
+  // load a tile layer
+  // L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
+    // {
+      // attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+    //   maxZoom: 17,
+    //   minZoom: 9
+    // }).addTo(map);
+
+  </script>
 
 </div>

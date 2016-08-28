@@ -12,4 +12,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Enviorment variables
 .env
+
+# seed data files
+/lib/seeds/*

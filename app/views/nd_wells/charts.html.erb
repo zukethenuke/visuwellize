@@ -1,5 +1,4 @@
-<script src='https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css' rel='stylesheet' />
+
         
 <style>
   /*body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }*/
@@ -34,9 +33,8 @@
     z-index: -1;
   }
 
-  #map{ 
-    height: 75%;
-    width: 75%;
+  #map {
+        height: 100%;
   }
 
 </style>
@@ -106,27 +104,11 @@
     </div>
       
     <div class='col s12 m12'>
-      <div id='map' style='width: 800px; height: 600px;'>
-      </div>
+      <div id="map"></div>
     </div>
 
   </div>
 </div> 
 
-<script>
-
-  var bounds = [
-      [-105, 45], // Southwest coordinates
-      [-95, 50]  // Northeast coordinates
-  ];
-
-  mapboxgl.accessToken = 'pk.eyJ1IjoienVrZXRoZW51a2UiLCJhIjoiY2lzZXl4bzkzMDBkazJzbnZpM2VtaDBqZyJ9.dG7pNd-7WKeW_3rEcq6Iqg';
-  var scatterMap = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
-    center: [-100.442734, 47.484052],
-    zoom: 6,
-    maxBounds: bounds
-  });
-  
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu8Ip9G_iNiQlfOE9129PXTr47kfz2erc&callback=initMap"
+    async defer></script>

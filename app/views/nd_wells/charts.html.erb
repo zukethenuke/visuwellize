@@ -3,6 +3,9 @@
         
 <style>
   /*body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }*/
+  .container {
+    width: 90%;
+  }
   .operatorName {
     /*color: black;*/
   }
@@ -47,14 +50,14 @@
   <div id="modalFilter" class="modal modal-fixed-footer">
     <div class="modal-content">
       <div class="row">
-      <div class="col s8">
+      <div class="col s8 m8">
         <h5>Oil Companies</h5>
         <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter} | orderBy:orderAttribute:isOrderDescending"> 
         <input type="checkbox" class="operatorList" id="{{ operator.id }}" ng-model="operator.checked"/> 
         <label for="{{ operator.id }}", class="operatorName">{{ operator.name }} ( {{ operator.wellCount }} )</label>
       </div>
       </div>
-      <div class="col s4">
+      <div class="col s4 m4">
         <div>
           <h5>Filter Options</h5>
           <p>Search by:</p>
@@ -92,21 +95,38 @@
     </div>
   </div>
           
-            
-  <div>
-    <svg id="scatter"></svg>
-  </div>
-  <div>
-    <svg id="production_bar"></svg>
-  </div>
-  <div id="map"></div>
+  <div class='row'>
+    <div class='col s12 m12'>
+      <div>
+        <svg id="scatter"></svg>
+      </div>
+      <div>
+        <svg id="production_bar"></svg>
+      </div>
+    </div>
+      
+    <div class='col s12 m12'>
+      <div id='map' style='width: 800px; height: 600px;'>
+      </div>
+    </div>
 
-<div id='map' style='width: 400px; height: 300px;'></div>
+  </div>
+</div> 
+
 <script>
+
+  var bounds = [
+      [-105, 45], // Southwest coordinates
+      [-95, 50]  // Northeast coordinates
+  ];
+
   mapboxgl.accessToken = 'pk.eyJ1IjoienVrZXRoZW51a2UiLCJhIjoiY2lzZXl4bzkzMDBkazJzbnZpM2VtaDBqZyJ9.dG7pNd-7WKeW_3rEcq6Iqg';
-  var map = new mapboxgl.Map({
+  var scatterMap = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9'
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [-100.442734, 47.484052],
+    zoom: 6,
+    maxBounds: bounds
   });
+  
 </script>
-</div>

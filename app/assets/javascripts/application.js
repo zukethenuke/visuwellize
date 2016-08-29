@@ -17,4 +17,5 @@
 //= require d3
 //= require uStates
 //= require randomColor
+//= require scatter
 //= require_tree .

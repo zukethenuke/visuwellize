@@ -41,7 +41,6 @@ var scatter = function(wells) {
   assignColorToWellByCompany(wells);
 
   googleMapAScatter(wells);
-  mapboxScatter(wells);
 
   var toolTip = d3.select("body").append("div")
     .attr("class", "tooltip")

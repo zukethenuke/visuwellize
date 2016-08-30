@@ -1,7 +1,5 @@
 var scatter = function(wells) {
 
-  initMap(wells);
-
   d3.selectAll('g').remove();
   d3.selectAll('circle').remove();
   d3.selectAll('.tooltip').remove();
@@ -41,6 +39,9 @@ var scatter = function(wells) {
     });
   };
   assignColorToWellByCompany(wells);
+
+  googleMapAScatter(wells);
+  mapboxScatter(wells);
 
   var toolTip = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -130,6 +131,7 @@ var scatter = function(wells) {
     d3.json("/api/nd.json", function(newWells) {
       fixDate(newWells);
       assignColorToWellByCompany(newWells);
+      googleMapAScatter(newWells);
 
       svg.selectAll('circle')
         .data(newWells)

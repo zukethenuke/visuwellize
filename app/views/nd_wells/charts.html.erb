@@ -5,10 +5,7 @@
   .container {
     width: 90%;
   }
-  .operatorName {
-    /*color: black;*/
-  }
-
+  
   .axis path {
     fill: none;
     stroke: black;
@@ -33,7 +30,7 @@
     z-index: -1;
   }
 
-  #map {
+  #googleMap {
         height: 100%;
   }
 
@@ -104,11 +101,18 @@
     </div>
       
     <div class='col s12 m12'>
-      <div id="map"></div>
+      <div id="googleMap"></div>
     </div>
+    
+
+    <div id='mapboxMap' style='width: 800px; height: 600px;'></div>
+    <script>
+    
+    </script>
 
   </div>
 </div> 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu8Ip9G_iNiQlfOE9129PXTr47kfz2erc&callback=initMap"
-    async defer></script>
+
+          
+        

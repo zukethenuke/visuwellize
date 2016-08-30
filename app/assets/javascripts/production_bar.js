@@ -11,7 +11,6 @@ function proBar(well) {
 
     var fixDate = function(well) {
       var format = d3.time.format("%Y-%m-%d");
-      // data.sort(function(a,b) { return a.depth - b.depth});
       well.monthlys.forEach(function(d) {
         d.date = format.parse(d.date);
       });

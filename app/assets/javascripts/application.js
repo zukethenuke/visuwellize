@@ -18,5 +18,6 @@
 //= require uStates
 //= require randomColor
 //= require scatter
-//= require mark_wells_on_map
+//= require google_map_scatter
+//= require mapbox_map_scatter
 //= require_tree .

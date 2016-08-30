@@ -19,5 +19,4 @@
 //= require randomColor
 //= require scatter
 //= require google_map_scatter
-//= require mapbox_map_scatter
 //= require_tree .

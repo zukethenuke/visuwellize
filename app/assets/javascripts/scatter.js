@@ -121,7 +121,7 @@ var scatter = function(wells) {
       .attr("class", function(d) { return d.operator; })
       .attr("cx", function(d) { return xScale(d.spudDate); })
       .attr("cy", function(d) { return yScale(d.td) })
-      .attr("r", function(d) { return d.cumOil / 40000 })
+      .attr("r", function(d) { return Math.sqrt(d.cumOil / 3.14) / 30 })
       .style("opacity", .5)
       .style("fill", function(d) { return d.color; });
 
@@ -152,28 +152,8 @@ var scatter = function(wells) {
     .on('click', function() {
       d3.json("/api/nd.json", scatter);
     });
-
-    // d3.select('svg')
-    // .on('click', function() {
-    //   d3.json("/api/nd.json", scatter(newWells) {
-    //     fixDate(newWells);
-    //     assignColorToWellByCompany(newWells);
-    //     googleMapAScatter(newWells);
-
-    //     circles.exit().remove();
-
-    //     svg.selectAll('circle')
-    //       .data(newWells)
-    //       .transition()
-    //       .duration(1000)
-    //       .attr("class", function(d) { return d.operator; })
-    //       .attr("cx", function(d) { return xScale(d.spudDate); })
-    //       .attr("cy", function(d) { return yScale(d.td); })
-    //       .attr("r", function(d) { return d.cumOil / 40142; })
-    //       .style("fill", function(d) { return d.color; });
-    //   });
-    // });
   };
+
   update(wells);
 };
 

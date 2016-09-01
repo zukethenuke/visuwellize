@@ -21,6 +21,16 @@
       }
     );
 
+    $scope.slider = {
+      minValue: 100,
+      maxValue: 1500,
+      options: {
+        floor: 1,
+        ceil: 2000,
+        draggableRange: true
+      }
+    };
+
     var getNewWells = function() {
       var params = {};
       params.operatorList = $scope.completeOperatorList;

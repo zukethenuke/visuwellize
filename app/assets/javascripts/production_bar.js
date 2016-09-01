@@ -44,7 +44,7 @@ function proBar(well) {
       .attr("class", "bar_graph");
 
     svg.append("g")
-      .attr("class", "axis")
+      .attr("class", "xAxis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
     .append("text")
@@ -55,7 +55,7 @@ function proBar(well) {
       .text("Date");
 
     svg.append("g")
-      .attr("class", "axis")
+      .attr("class", "yAxis")
       .call(yAxis)
     .append("text")
       .attr("class", "label")

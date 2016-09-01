@@ -92,20 +92,22 @@ var scatter = function(wells) {
       .transition()
       .call(yAxis);
 
-    // xg.append("text")
-    //   .attr("class", "label")
-    //   .attr("x", width)
-    //   .attr("y", -6)
-    //   .style("text-anchor", "end")
-    //   .text("Spud Date");
+    d3.select('.xAxis')
+      .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Spud Date");
 
-    // yg.append("text")
-    //   .attr("class", "label")
-    //   .attr("transform", "rotate(-90)")
-    //   .attr("y", 6)
-    //   .attr("dy", ".71em")
-    //   .style("text-anchor", "end")
-    //   .text("Depth (ft)");
+    d3.select('.yAxis')
+      .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Depth (ft)");
 
 
     var circles = d3.select('.chart').selectAll("circle")
@@ -135,7 +137,7 @@ var scatter = function(wells) {
       toolTip.html(d.operator + "<br> Depth: " + d.td + " feet<br>Total Oil Output: " + formatComma(d.cumOil) + " bbls")
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY) - 85 + "px");
-      proBar(d)
+      proBar(d);
     });
 
     circles.on("mouseout", function(d) {

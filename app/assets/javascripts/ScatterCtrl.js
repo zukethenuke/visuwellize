@@ -22,13 +22,25 @@
     );
 
     $scope.slider = {
-      minValue: 100,
-      maxValue: 1500,
+      minValue: 200,
+      maxValue: 2500,
       options: {
         floor: 1,
-        ceil: 2000,
+        ceil: 2500,
         draggableRange: true
       }
+    };
+
+    $scope.greaterThan = function(minWellCount) {
+      return function(operator) {
+        if (operator.wellCount >= minWellCount) { return true };
+      };
+    };
+
+    $scope.lessThan = function(maxWellCount) {
+      return function(operator) {
+        if (operator.wellCount < maxWellCount) { return true };
+      };
     };
 
     var getNewWells = function() {

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require angular
 //= require app
+//= require rzslider
 //= require d3
 //= require uStates
 //= require randomColor

@@ -1,6 +1,7 @@
 /* global d3 */
 
 function proBar(well) {
+  var operatorColor = well.color;
   d3.json("http://localhost:3000/api/nd/" + well.id, function(well) {
 
     d3.selectAll(".bar_graph").remove();
@@ -76,6 +77,6 @@ function proBar(well) {
       .attr("width", 2)
       .attr("y", function(d) { return yScale(d.bbls_oil); })
       .attr("height", function(d) { return height - yScale(d.bbls_oil); })
-      .style("fill", 'steelblue');
+      .style("fill", operatorColor);
   });
 }

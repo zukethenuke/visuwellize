@@ -73,7 +73,7 @@
       <div class="row">
       <div class="col s8 m8">
         <h5>Oil Companies</h5>
-        <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter} | orderBy:orderAttribute:isOrderDescending"> 
+        <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter} | filter: greaterThan(slider.minValue) | filter: lessThan(slider.maxValue) | orderBy:orderAttribute:isOrderDescending"> 
         <input type="checkbox" class="operatorList" id="{{ operator.id }}" ng-model="operator.checked"/> 
         <label for="{{ operator.id }}", class="operatorName">{{ operator.name }} ( {{ operator.wellCount }} )</label>
       </div>
@@ -101,21 +101,12 @@
             </p>
           </form>
         </div>
-          <div>
-            <form action="#">
-            <p class="range-field"> <!-- var selectedYear = document.getElementById("menu").value; -->
-              <input type="range" id="slider" min="0" max="1000"/>
-            </p>
-
-            <div>
-              <rzslider rz-slider-model="slider.minValue"
-                        rz-slider-high="slider.maxValue"
-                        rz-slider-options="slider.options">
-              </rzslider>
-            </div>
-
-          </form>
-          </div>
+        <div>
+          <rzslider rz-slider-model="slider.minValue"
+                    rz-slider-high="slider.maxValue"
+                    rz-slider-options="slider.options">
+          </rzslider>
+        </div>
       </div>
     </div>
     </div>

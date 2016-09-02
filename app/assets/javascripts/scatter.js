@@ -148,7 +148,7 @@ var scatter = function(wells) {
 
     d3.select('svg')
     .on('click', function() {
-      d3.json("/api/nd.json", scatter);
+      d3.json("/api/nd.json", update);
     });
   };
 

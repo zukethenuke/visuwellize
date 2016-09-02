@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804022031) do
+ActiveRecord::Schema.define(version: 20160902204041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160804022031) do
   end
 
   create_table "nd_wells", force: :cascade do |t|
-    t.integer  "api_no",         limit: 8
+    t.integer  "api_no",              limit: 8
     t.integer  "file_no"
     t.string   "operator"
     t.string   "well_name"
@@ -47,9 +47,11 @@ ActiveRecord::Schema.define(version: 20160804022031) do
     t.string   "well_type"
     t.string   "well_status"
     t.integer  "cum_oil"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "nd_operator_id"
+    t.string   "drilling_contractor"
+    t.string   "rig"
   end
 
 end

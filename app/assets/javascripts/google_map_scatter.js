@@ -1,5 +1,6 @@
 
 function googleMapAScatter(wells) {
+
   var map = new google.maps.Map(document.getElementById('googleMap'), {
     zoom: 7,
     minZoom: 7,

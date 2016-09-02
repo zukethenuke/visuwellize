@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/' => 'nd_wells#opening_page'
   get '/nd' => 'nd_wells#index'
   get '/nd/scatter' => 'nd_wells#scatter'
-
+  get '/nd/rig_tree' => 'nd_wells#rig_tree'
   get '/nd/:id' => 'nd_wells#show'
 
   namespace :api do

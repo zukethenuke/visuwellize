@@ -20,13 +20,11 @@ var scatter = function(wells) {
     .attr("class", "chart");
 
   var update = function(wells) {
-
-    // d3.selectAll('circle').remove();
     d3.selectAll('.tooltip').remove();
 
     var fixDate = function(data) {
       var format = d3.time.format("%Y-%m-%d");
-      data.sort(function(a,b) { // sort so largest wells deiplay first and on bottom
+      data.sort(function(a,b) { // sort so largest wells display first and on bottom
         return b.cumOil - a.cumOil;
       });
       data.forEach(function(d) {
@@ -121,7 +119,7 @@ var scatter = function(wells) {
       .attr("class", function(d) { return d.operator; })
       .attr("cx", function(d) { return xScale(d.spudDate); })
       .attr("cy", function(d) { return yScale(d.td) })
-      .attr("r", function(d) { return Math.sqrt(d.cumOil / 3.14) / 30 })
+      .attr("r", function(d) { return Math.sqrt(d.cumOil) / 30 })
       .style("opacity", .5)
       .style("fill", function(d) { return d.color; });
 

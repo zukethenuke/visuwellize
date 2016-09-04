@@ -24,4 +24,10 @@ class Api::NdWellsController < ApplicationController
     render 'operators.json.jbuilder'
   end
 
+  def rig_tree
+    @tree = NdWells.c #reate_rig_tree
+    # @drilling_contractors = NdWells.select(:drilling_contractor).distinct
+    render 'rig_tree.json.jbuilder'
+  end
+
 end

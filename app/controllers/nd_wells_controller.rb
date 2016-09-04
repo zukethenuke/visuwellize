@@ -22,7 +22,6 @@ class NdWellsController < ApplicationController
   end
 
   def rig_tree
-    # @wells = NdWell.where("rig IS NOT NULL")
     render 'rig_tree.html.erb'
   end
 

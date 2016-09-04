@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/nd' => 'nd_wells#index'
     post '/nd' => 'nd_wells#index'
     get '/nd/operators' => 'nd_wells#operators'
-    # get '/nd2' => 'nd_wells#index'
+    get '/nd/rig_tree' => 'nd_wells#rig_tree'
     get '/nd/:id' => 'nd_wells#show'
   end
   # The priority is based upon order of creation: first created -> highest priority.

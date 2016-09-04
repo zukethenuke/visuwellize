@@ -16,10 +16,10 @@ class NdWell < ActiveRecord::Base
   end
 
   def self.dc_branch(wells, tree)
-    tree["children"].each do |child|
+    tree["children"].each do |operator|
       dc_array = []
       wells.each do |well|
-        if child["name"] == well[:operator]
+        if operator["name"] == well[:operator]
           dc_array << well[:drilling_contractor]
         end
       end
@@ -29,12 +29,42 @@ class NdWell < ActiveRecord::Base
         dcs = dc_array # fix nil bug if only on well
       end
       dcs.each do |dc|
-        child["children"] << {"name" => dc, "children" => []}
+        operator["children"] << {"name" => dc, "children" => []}
       end
     end
+    NdWell.rig_branch(wells, tree)
     return tree
   end
 
+  def self.rig_branch(wells, tree)
+    tree["children"].each do |operator|
+      operator["children"].each do |dc|
+        rig_array = []
+        wells.each do |well|
+          if dc["name"] == well[:drilling_contractor] && operator["name"] == well[:operator]
+            rig_array << well[:rig]
+          end
+        end
+
+        if rig_array.count > 1
+          rigs = rig_array.uniq!
+        else
+          rigs = rig_array
+        end
+        if rigs != nil
+          rigs.each do |rig|
+            dc["children"] << {"name" => rig, "children" => []}
+          end
+        end
+      end
+    end
+    NdWell.wells_branch(wells, tree)
+    return tree
+  end
+
+  def self.wells_branch(wells, tree)
+    
+  end
 end
 
 

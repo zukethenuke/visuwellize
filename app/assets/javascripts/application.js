@@ -19,5 +19,6 @@
 //= require uStates
 //= require randomColor
 //= require scatter
+//= require dndtree
 //= require google_map_scatter
 //= require_tree .

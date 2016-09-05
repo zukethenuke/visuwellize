@@ -51,7 +51,7 @@ class NdWell < ActiveRecord::Base
         else
           rigs = rig_array
         end
-        if rigs != nil
+        if !rigs.nil?
           rigs.each do |rig|
             dc["children"] << {"name" => rig, "children" => []}
           end
@@ -63,7 +63,12 @@ class NdWell < ActiveRecord::Base
   end
 
   def self.wells_branch(wells, tree)
-    
+    # tree["children"].each do |operator|
+    #   operator["children"].each do |dc|
+    #    dc["children"].each do |rig|
+
+    #    end
+    #   end
   end
 end
 

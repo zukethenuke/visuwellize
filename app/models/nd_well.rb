@@ -32,7 +32,7 @@ class NdWell < ActiveRecord::Base
         operator["children"] << {"name" => dc, "children" => []}
       end
     end
-    NdWell.rig_branch(wells, tree)
+    # NdWell.rig_branch(wells, tree)
     return tree
   end
 

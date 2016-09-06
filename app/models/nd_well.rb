@@ -63,12 +63,19 @@ class NdWell < ActiveRecord::Base
   end
 
   def self.wells_branch(wells, tree)
-    # tree["children"].each do |operator|
-    #   operator["children"].each do |dc|
-    #    dc["children"].each do |rig|
-
-    #    end
-    #   end
+    tree["children"].each do |operator|
+      operator["children"].each do |dc|
+        dc["children"].each do |rig|
+          wells_array = []
+          wells.each do |well|
+            if dc["name"] == well[:drilling_contractor] && operator["name"] == well[:operator] && rig["name"] == well[:rig]
+              well_name = {"name" => well[:well_name]}
+              rig["children"] << well_name
+            end
+          end
+        end
+      end
+    end
   end
 end
 

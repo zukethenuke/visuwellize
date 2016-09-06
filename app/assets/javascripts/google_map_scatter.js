@@ -16,7 +16,8 @@ function googleMapAScatter(wells) {
     });
 
     var infowindow = new google.maps.InfoWindow({
-      content: well.operator
+      content: well.wellName
+
     });
 
     marker.addListener('click', function() {

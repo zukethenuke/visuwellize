@@ -155,7 +155,6 @@ console.log(treeJSON);
         .attr("class", "overlay")
         .call(zoomListener);
 
-
     // Define the drag listeners for drag/drop behaviour of nodes.
     dragListener = d3.behavior.drag()
         .on("dragstart", function(d) {
@@ -349,6 +348,7 @@ console.log(treeJSON);
         centerNode(d);
     }
 
+
     function update(source) {
   console.log(treeData);
         // Compute the new height, function counts total children of root node and sets tree height accordingly.
@@ -535,6 +535,36 @@ console.log(treeJSON);
   // Collapse all children of roots children before rendering.
   root.children.forEach(function(child){
     collapse(child);
+    // expand(child);
+
+    var expandAll = function() {
+        root.children.forEach(function(child){
+            expand(child);
+        });
+        update(root);
+    };
+
+     var collapseAll = function() {
+        root.children.forEach(function(child){
+            collapse(child);
+        });
+        update(root);
+    };
+
+    var expandButton = d3.select("#expand-button")
+        .on('click', function() {
+            expandAll();
+            console.log("expand clicked");
+            centerNode(root);
+        });
+
+    var collapseButton = d3.select("#collapse-button")
+        .on('click', function() {
+            collapseAll();
+            console.log("collpse clicked");
+            centerNode(root);
+        });
+
   });
 
     // Layout the tree initially and center on the root node.

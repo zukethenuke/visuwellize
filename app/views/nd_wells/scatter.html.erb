@@ -43,6 +43,12 @@
     font-size: 15px;
   }
 
+  circle {
+    fill: white;
+    stroke: lightgrey;
+    stroke-width: 1;
+  }
+
   div.tooltip {
     position: absolute;
     text-align: center;
@@ -74,7 +80,7 @@
       <div class="row">
       <div class="col s8 m8">
         <h5>Oil Companies</h5>
-        <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter} | filter: greaterThan(slider.minValue) | filter: lessThan(slider.maxValue) | orderBy:orderAttribute:isOrderDescending"> 
+        <div ng-repeat="operator in completeOperatorList | filter: {name: nameFilter} | filter: greaterThan(operatorNameSlider.minValue) | filter: lessThan(operatorNameSlider.maxValue) | orderBy:orderAttribute:isOrderDescending"> 
         <input type="checkbox" class="operatorList" id="{{ operator.id }}" ng-model="operator.checked"/> 
         <label for="{{ operator.id }}", class="operatorName">{{ operator.name }} ( {{ operator.wellCount }} )</label>
       </div>
@@ -103,9 +109,9 @@
           </form>
         </div>
         <div>
-          <rzslider rz-slider-model="slider.minValue"
-                    rz-slider-high="slider.maxValue"
-                    rz-slider-options="slider.options">
+          <rzslider rz-slider-model="operatorNameSlider.minValue"
+                    rz-slider-high="operatorNameSlider.maxValue"
+                    rz-slider-options="operatorNameSlider.options">
           </rzslider>
         </div>
       </div>

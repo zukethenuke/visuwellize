@@ -21,9 +21,9 @@
       }
     );
 
-    $scope.slider = {
+    $scope.operatorNameSlider = {
       minValue: 200,
-      maxValue: 2500,
+      maxValue: 2300,
       options: {
         floor: 1,
         ceil: 2500,

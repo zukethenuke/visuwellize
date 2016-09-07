@@ -65,6 +65,9 @@ var scatter = function(wells) {
     var xExtent = d3.extent(wells, function(well) { return well.spudDate; });
     var yExtent = d3.extent(wells, function(well) { return well.td; });
 
+    // $scope.yearSliderfloor = 1900 + xExtent[0].getYear();
+    // console.log("slider floor", $scope.yearSliderfloor);
+
     var xScale = d3.time.scale()
       .range([0, width])
       .domain(xExtent);
@@ -107,12 +110,11 @@ var scatter = function(wells) {
       .style("text-anchor", "end")
       .text("Depth (ft)");
 
-
     var circles = d3.select('.chart').selectAll("circle")
       .data(wells);
 
     circles.enter()
-      .append("circle")
+      .append("circle");
       
     circles.transition()
       .duration(1000)

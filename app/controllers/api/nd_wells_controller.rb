@@ -19,6 +19,14 @@ class Api::NdWellsController < ApplicationController
     render 'show.json.jbuilder'
   end
 
+  def animation
+    puts "params"
+    puts params
+    # @wells = NdWell.where('spud_date > params[:start_year] AND spud_date < params[:end_year]')
+    @wells = NdWell.where('spud_date > ? AND spud_date < ?', params[:start_year], params[:end_year])
+    render 'index.json.jbuilder'
+  end
+
   def operators
     @operators = NdOperator.all
     render 'operators.json.jbuilder'

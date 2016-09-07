@@ -112,7 +112,7 @@ var scatter = function(wells) {
       .data(wells);
 
     circles.enter()
-      .append("circle");
+      .append("circle")
       
     circles.transition()
       .duration(1000)
@@ -139,7 +139,9 @@ var scatter = function(wells) {
     });
 
     circles.on("mouseout", function(d) {
-      d3.select(this).style("stroke", "");
+      d3.select(this)
+        .style("stroke", "")
+        .style("stroke-width", 1);
       d3.select('.tooltip')
         .transition()
         .duration(500)

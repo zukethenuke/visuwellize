@@ -23,6 +23,7 @@ class Api::NdWellsController < ApplicationController
     puts "params"
     puts params
     # @wells = NdWell.where('spud_date > params[:start_year] AND spud_date < params[:end_year]')
+    # @wells = NdWell.includes(:nd_monthly_productions).where('spud_date > ? AND spud_date < ? AND td IS NOT NULL', params[:start_year], params[:end_year])
     @wells = NdWell.where('spud_date > ? AND spud_date < ? AND td IS NOT NULL', params[:start_year], params[:end_year])
     render 'index.json.jbuilder'
   end

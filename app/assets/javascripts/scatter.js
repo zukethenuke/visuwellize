@@ -88,6 +88,7 @@ var scatter = function(wells, map, mapMarkers) {
     assignColorToWellByCompany(wells);
 
     // googleMapAScatter(wells, map, mapMarkers);
+    yearlyTotalBar();
 
     var toolTip = d3.select("body").append("div")
       .attr("class", "tooltip")
@@ -121,7 +122,7 @@ var scatter = function(wells, map, mapMarkers) {
       .call(xAxis);
 
     var yg = d3.select('.yAxis')
-      .transition()
+      // .transition()
       .call(yAxis);
 
     d3.select('.xAxis')
@@ -184,9 +185,6 @@ var scatter = function(wells, map, mapMarkers) {
     d3.select('svg')
     .on('click', function() {
       d3.json("/api/nd.json", update);
-      d3.selectAll("circle")
-        .attr("transform", "translate(0, 0)")
-        .transition();
     });
   };
 

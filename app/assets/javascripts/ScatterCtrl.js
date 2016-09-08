@@ -21,7 +21,7 @@ window.requestInterval = function(fn, delay) {
     !(window.mozRequestAnimationFrame && window.mozCancelRequestAnimationFrame) && // Firefox 5 ships without cancel support
     !window.oRequestAnimationFrame      && 
     !window.msRequestAnimationFrame)
-      return window.setInterval(fn, delay);
+    return window.setInterval(fn, delay);
       
   var start = new Date().getTime(),
     handle = new Object();
@@ -36,11 +36,11 @@ window.requestInterval = function(fn, delay) {
     }
 
     handle.value = requestAnimFrame(loop);
-  };
+  }
   
   handle.value = requestAnimFrame(loop);
   return handle;
-}
+};
 
 /**
  * Behaves the same as clearInterval except uses cancelRequestAnimationFrame() where possible for better performance
@@ -70,7 +70,6 @@ window.requestInterval = function(fn, delay) {
 
     $scope.setup = function() {
       $scope.scatterOpeningAnimation();
-      // d3.json("/api/nd.json", scatter);
     };
 
     $scope.scatterOpeningAnimation = function() {
@@ -89,8 +88,6 @@ window.requestInterval = function(fn, delay) {
         console.log(isPaused);
       });
 
-
-
       var years = [];
       var yearIndex = 0;
       for (var i = 1951; i <= 2014; i++) {
@@ -102,12 +99,9 @@ window.requestInterval = function(fn, delay) {
         var startYear = function() {
           return years[yearIndex].toString() + "-12-12";
         };
-        console.log("startYear: ", startYear());
         var endYear = function() {
           return (years[yearIndex] + 1).toString() + "-12-12";
         };
-        console.log("endYear: ", endYear());
-
         var params = {};
         console.log("isPaused: ",isPaused);
         if(!isPaused) {
@@ -116,18 +110,14 @@ window.requestInterval = function(fn, delay) {
             scatter(response.data, map, mapMarkers);
           }, function(errors) {
           });
-
           if (years[yearIndex] < 2000) {
             yearIndex += 5;
           }else {
             yearIndex++;
           }
         }
-        console.log("year index: ", yearIndex);
-        console.log("years length: ", years.length);
         if (yearIndex >= years.length) {
         // if (yearIndex > 40) {
-          console.log("clear");
           // clearRequestInterval(year_interval);
           clearInterval(year_interval);
         }

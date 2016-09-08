@@ -99,9 +99,15 @@ window.requestInterval = function(fn, delay) {
           scatter(response.data, map, mapMarkers);
         }, function(errors) {
         });
-        yearIndex++;
-        // if (yearIndex > years.length) {
-        if (yearIndex > 10) {
+
+        if (years[yearIndex] < 2000) {
+          yearIndex += 5;
+        }else {
+          yearIndex++;
+        }
+
+        if (yearIndex > years.length) {
+        // if (yearIndex > 10) {
           console.log("clear");
           // clearRequestInterval(year_interval);
           clearInterval(year_interval);

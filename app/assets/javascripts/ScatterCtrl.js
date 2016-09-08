@@ -82,8 +82,8 @@ window.requestInterval = function(fn, delay) {
 
       var yearIndex = 0;
 
-      var year_interval = requestInterval(function() {
-      // var year_interval = setInterval(function() {
+      // var year_interval = requestInterval(function() {
+      var year_interval = setInterval(function() {
         var startYear = function() {
           return years[yearIndex].toString() + "-12-12";
         };
@@ -108,11 +108,11 @@ window.requestInterval = function(fn, delay) {
 
         console.log("year index: ", yearIndex);
         console.log("years length: ", years.length);
-        if (yearIndex > years.length) {
-        // if (yearIndex > 10) {
+        // if (yearIndex > years.length) {
+        if (yearIndex > 10) {
           console.log("clear");
-          clearRequestInterval(year_interval);
-          // clearInterval(year_interval);
+          // clearRequestInterval(year_interval);
+          clearInterval(year_interval);
         }
       }, 2000);
     };

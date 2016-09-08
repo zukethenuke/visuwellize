@@ -1,5 +1,4 @@
-var scatter = function(wells, map) {
-  console.log('scatter');
+var scatter = function(wells, map, mapMarkers) {
 
   var margin = {top: 20, right:20, bottom: 100, left: 62};
   var width = 960 - margin.left - margin.right;
@@ -56,7 +55,7 @@ var scatter = function(wells, map) {
     };
     assignColorToWellByCompany(wells);
 
-    googleMapAScatter(wells, map);
+    googleMapAScatter(wells, map, mapMarkers);
 
     var toolTip = d3.select("body").append("div")
       .attr("class", "tooltip")
@@ -65,10 +64,8 @@ var scatter = function(wells, map) {
     var formatComma = d3.format(",");
 
     var xExtent = d3.extent(wells, function(well) { return well.spudDate; });
-    var yExtent = d3.extent(wells, function(well) { return well.td; });
-
-    // $scope.yearSliderfloor = 1900 + xExtent[0].getYear();
-    // console.log("slider floor", $scope.yearSliderfloor);
+    // var yExtent = d3.extent(wells, function(well) { return well.td; });
+    var yExtent = d3.extent([0, 26000]);
 
     var xScale = d3.time.scale()
       .range([0, width])
@@ -92,7 +89,7 @@ var scatter = function(wells, map) {
       .call(xAxis);
 
     var yg = d3.select('.yAxis')
-      // .transition()
+      .transition()
       .call(yAxis);
 
     d3.select('.xAxis')

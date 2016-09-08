@@ -1,4 +1,60 @@
 /* global angular, d3 */
+window.requestAnimFrame = (function() {
+  return  window.requestAnimationFrame       || 
+      window.webkitRequestAnimationFrame || 
+      window.mozRequestAnimationFrame    || 
+      window.oRequestAnimationFrame      || 
+      window.msRequestAnimationFrame     || 
+      function(/* function */ callback, /* DOMElement */ element){
+        window.setTimeout(callback, 1000 / 60);
+      };
+})();
+
+/**
+ * Behaves the same as setInterval except uses requestAnimationFrame() where possible for better performance
+ * @param {function} fn The callback function
+ * @param {int} delay The delay in milliseconds
+ */
+window.requestInterval = function(fn, delay) {
+  if( !window.requestAnimationFrame       && 
+    !window.webkitRequestAnimationFrame && 
+    !(window.mozRequestAnimationFrame && window.mozCancelRequestAnimationFrame) && // Firefox 5 ships without cancel support
+    !window.oRequestAnimationFrame      && 
+    !window.msRequestAnimationFrame)
+      return window.setInterval(fn, delay);
+      
+  var start = new Date().getTime(),
+    handle = new Object();
+    
+  function loop() {
+    var current = new Date().getTime(),
+      delta = current - start;
+      
+    if(delta >= delay) {
+      fn.call();
+      start = new Date().getTime();
+    }
+
+    handle.value = requestAnimFrame(loop);
+  };
+  
+  handle.value = requestAnimFrame(loop);
+  return handle;
+}
+
+/**
+ * Behaves the same as clearInterval except uses cancelRequestAnimationFrame() where possible for better performance
+ * @param {int|object} fn The callback function
+ */
+    window.clearRequestInterval = function(handle) {
+    window.cancelAnimationFrame ? window.cancelAnimationFrame(handle.value) :
+    window.webkitCancelAnimationFrame ? window.webkitCancelAnimationFrame(handle.value) :
+    window.webkitCancelRequestAnimationFrame ? window.webkitCancelRequestAnimationFrame(handle.value) : /* Support for legacy API */
+    window.mozCancelRequestAnimationFrame ? window.mozCancelRequestAnimationFrame(handle.value) :
+    window.oCancelRequestAnimationFrame ? window.oCancelRequestAnimationFrame(handle.value) :
+    window.msCancelRequestAnimationFrame ? window.msCancelRequestAnimationFrame(handle.value) :
+    clearInterval(handle);
+};
 
 (function() {
   "use strict";
@@ -10,6 +66,7 @@
       minZoom: 7,
       center: {lat: 47.484052, lng: -100.442734}
     });
+    var mapMarkers = [];
 
     $scope.setup = function() {
       $scope.scatterOpeningAnimation();
@@ -19,12 +76,13 @@
     $scope.scatterOpeningAnimation = function() {
 
       var years = [];
-      for (var i = 1951; i <= 2015; i++) {
+      for (var i = 1951; i <= 2014; i++) {
         years.push(i);
       }
 
       var yearIndex = 0;
 
+      // var year_interval = requestInterval(function() {
       var year_interval = setInterval(function() {
         var startYear = function() {
           return years[yearIndex].toString() + "-12-12";
@@ -38,12 +96,14 @@
         var params = {};
         params = {"start_year": startYear(), "end_year": endYear()};
         $http.post("/api/nd/animation", params).then(function(response) {
-          scatter(response.data, map);
+          scatter(response.data, map, mapMarkers);
         }, function(errors) {
         });
         yearIndex++;
         // if (yearIndex > years.length) {
-        if (yearIndex === 5) {
+        if (yearIndex > 10) {
+          console.log("clear");
+          // clearRequestInterval(year_interval);
           clearInterval(year_interval);
         }
       }, 1000);
@@ -101,7 +161,7 @@
       var params = {};
       params.operatorList = $scope.completeOperatorList;
       $http.post("/api/nd", params).then(function(response) {
-        scatter(response.data);
+        scatter(response.data, map, mapMarkers);
       }, function(errors) {
 
       });

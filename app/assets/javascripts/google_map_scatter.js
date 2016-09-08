@@ -1,11 +1,5 @@
 
-function googleMapAScatter(wells) {
-
-  var map = new google.maps.Map(document.getElementById('googleMap'), {
-    zoom: 7,
-    minZoom: 7,
-    center: {lat: 47.484052, lng: -100.442734}
-  });
+function googleMapAScatter(wells, map) {
 
   wells.forEach(function(well) {
     var marker = new google.maps.Marker({

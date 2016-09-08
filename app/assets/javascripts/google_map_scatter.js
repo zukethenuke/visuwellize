@@ -1,5 +1,11 @@
 
-function googleMapAScatter(wells, map) {
+function googleMapAScatter(wells, map, mapMarkers) {
+
+  console.log('mapMarkers length before: ', mapMarkers.length);
+  for (var i = 0; i < mapMarkers.length; i++) {
+    mapMarkers[i].setMap(null);
+  }
+  // mapMarkers = [];
 
   wells.forEach(function(well) {
     var marker = new google.maps.Marker({
@@ -9,13 +15,21 @@ function googleMapAScatter(wells, map) {
       title: well.operator,
     });
 
+
+    mapMarkers.push(marker);
+
     var infowindow = new google.maps.InfoWindow({
       content: well.wellName
-
     });
 
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
+
   });
+  
+  // mapMarkers = [];
+
+  console.log('mapMarkers length after: ', mapMarkers.length);
+
 }

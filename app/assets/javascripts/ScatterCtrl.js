@@ -82,8 +82,8 @@ window.requestInterval = function(fn, delay) {
 
       var yearIndex = 0;
 
-      // var year_interval = requestInterval(function() {
-      var year_interval = setInterval(function() {
+      var year_interval = requestInterval(function() {
+      // var year_interval = setInterval(function() {
         var startYear = function() {
           return years[yearIndex].toString() + "-12-12";
         };
@@ -111,8 +111,8 @@ window.requestInterval = function(fn, delay) {
         if (yearIndex > years.length) {
         // if (yearIndex > 10) {
           console.log("clear");
-          // clearRequestInterval(year_interval);
-          clearInterval(year_interval);
+          clearRequestInterval(year_interval);
+          // clearInterval(year_interval);
         }
       }, 2000);
     };
@@ -127,9 +127,8 @@ window.requestInterval = function(fn, delay) {
       starting_top: '4%', // Starting top style attribute
       ending_top: '10%', // Ending top style attribute
       // ready: function() { alert('Ready'); }, // Callback for Modal open
-      complete: function() { getNewWells() } // Callback for Modal close
-      }
-    );
+      complete: function() { getNewWells(); } // Callback for Modal close
+    });
 
     $scope.operatorNameSlider = {
       minValue: 200,
@@ -142,10 +141,10 @@ window.requestInterval = function(fn, delay) {
     };
 
     $scope.yearSlider = {
-      minValue: 1940,
+      minValue: 1960,
       maxValue: 2016,
       options: {
-        floor: 1940,
+        floor: 1950,
         ceil: 2016,
         step: 1,
         draggableRange: true

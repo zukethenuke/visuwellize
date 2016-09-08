@@ -108,8 +108,8 @@ window.requestInterval = function(fn, delay) {
 
         console.log("year index: ", yearIndex);
         console.log("years length: ", years.length);
-        // if (yearIndex > years.length) {
-        if (yearIndex > 10) {
+        if (yearIndex >= years.length) {
+        // if (yearIndex > 10) {
           console.log("clear");
           // clearRequestInterval(year_interval);
           clearInterval(year_interval);

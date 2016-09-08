@@ -5,13 +5,16 @@
 
   angular.module("app").controller("scatterCtrl", function($scope, $http) {
     
+    var map = new google.maps.Map(document.getElementById('googleMap'), {
+      zoom: 7,
+      minZoom: 7,
+      center: {lat: 47.484052, lng: -100.442734}
+    });
+
     $scope.setup = function() {
       $scope.scatterOpeningAnimation();
       // d3.json("/api/nd.json", scatter);
     };
-
-    // $scope.yearSliderFloor;
-    // $scope.yearSliderCeil;
 
     $scope.scatterOpeningAnimation = function() {
 
@@ -35,12 +38,12 @@
         var params = {};
         params = {"start_year": startYear(), "end_year": endYear()};
         $http.post("/api/nd/animation", params).then(function(response) {
-          scatter(response.data);
+          scatter(response.data, map);
         }, function(errors) {
         });
         yearIndex++;
-        if (yearIndex > years.length) {
-        // if (yearIndex === 5) {
+        // if (yearIndex > years.length) {
+        if (yearIndex === 5) {
           clearInterval(year_interval);
         }
       }, 1000);

@@ -1,4 +1,5 @@
-var scatter = function(wells) {
+var scatter = function(wells, map) {
+  console.log('scatter');
 
   var margin = {top: 20, right:20, bottom: 100, left: 62};
   var width = 960 - margin.left - margin.right;
@@ -18,6 +19,7 @@ var scatter = function(wells) {
 
   svg.append("g")
     .attr("class", "chart");
+
 
   var update = function(wells) {
     d3.selectAll('.tooltip').remove();
@@ -54,7 +56,7 @@ var scatter = function(wells) {
     };
     assignColorToWellByCompany(wells);
 
-    googleMapAScatter(wells);
+    googleMapAScatter(wells, map);
 
     var toolTip = d3.select("body").append("div")
       .attr("class", "tooltip")
@@ -86,11 +88,11 @@ var scatter = function(wells) {
 
     var xg = d3.select('.xAxis')
       .attr("transform", "translate(0," + height + ")")
-      .transition()
+      // .transition()
       .call(xAxis);
 
     var yg = d3.select('.yAxis')
-      .transition()
+      // .transition()
       .call(yAxis);
 
     d3.select('.xAxis')

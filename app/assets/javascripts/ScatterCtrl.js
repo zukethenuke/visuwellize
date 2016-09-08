@@ -75,12 +75,27 @@ window.requestInterval = function(fn, delay) {
 
     $scope.scatterOpeningAnimation = function() {
 
+      var isPaused = false;
+
+      $('.pause').on('click', function(e) {
+        e.preventDefault();
+        isPaused = true;
+        console.log(isPaused);
+      });
+
+      $('.play').on('click', function(e) {
+        e.preventDefault();
+        isPaused = false;
+        console.log(isPaused);
+      });
+
+
+
       var years = [];
+      var yearIndex = 0;
       for (var i = 1951; i <= 2014; i++) {
         years.push(i);
       }
-
-      var yearIndex = 0;
 
       // var year_interval = requestInterval(function() {
       var year_interval = setInterval(function() {
@@ -94,31 +109,32 @@ window.requestInterval = function(fn, delay) {
         console.log("endYear: ", endYear());
 
         var params = {};
-        params = {"start_year": startYear(), "end_year": endYear()};
-        $http.post("/api/nd/animation", params).then(function(response) {
-          scatter(response.data, map, mapMarkers);
-        }, function(errors) {
-        });
+        console.log("isPaused: ",isPaused);
+        if(!isPaused) {
+          params = {"start_year": startYear(), "end_year": endYear()};
+          $http.post("/api/nd/animation", params).then(function(response) {
+            scatter(response.data, map, mapMarkers);
+          }, function(errors) {
+          });
 
-        if (years[yearIndex] < 2000) {
-          yearIndex += 5;
-        }else {
-          yearIndex++;
+          if (years[yearIndex] < 2000) {
+            yearIndex += 5;
+          }else {
+            yearIndex++;
+          }
         }
-
         console.log("year index: ", yearIndex);
         console.log("years length: ", years.length);
         if (yearIndex >= years.length) {
-        // if (yearIndex > 10) {
+        // if (yearIndex > 40) {
           console.log("clear");
           // clearRequestInterval(year_interval);
           clearInterval(year_interval);
         }
-      }, 2000);
+      }, 2000, isPaused);
     };
 
-
-
+   
     $('.modal-trigger').leanModal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
       opacity: .5, // Opacity of modal background

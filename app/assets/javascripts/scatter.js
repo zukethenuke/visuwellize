@@ -72,9 +72,9 @@ var scatter = function(wells, map, mapMarkers) {
           }else if (wells[i].operator === "DENBURY ONSHORE, LLC") {
             companyColorArray.push([{company: wells[i].operator}, {color: "lightgrey"}]);
             continue;
-          }
-          
+          }else {
           companyColorArray.push([{company: wells[i].operator}, {color: randomColor()}]);
+          }
         }
       }
       wells.forEach(function(well) {

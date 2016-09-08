@@ -42,6 +42,38 @@ var scatter = function(wells, map, mapMarkers) {
       for (var i = 0; i < wells.length; i++) {
         if (companyArray.indexOf(wells[i].operator) === -1) {
           companyArray.push(wells[i].operator);
+          if (wells[i].operator === "CONTINENTAL RESOURCES, INC.") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "blue"}]);
+            continue;
+          }else if (wells[i].operator === "HESS BAKKEN INVESTMENTS II, LLC") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "red"}]);
+            continue;
+          }else if (wells[i].operator === "WHITING OIL AND GAS CORPORATION") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "purple"}]);
+            continue;
+          }else if (wells[i].operator === "XTO ENERGY INC.") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "yellow"}]);
+            continue;
+          }else if (wells[i].operator === "EOG RESOURCES, INC.") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "green"}]);
+            continue;
+          }else if (wells[i].operator === "OASIS PETROLEUM NORTH AMERICA LLC") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "orange"}]);
+            continue;
+          }else if (wells[i].operator === "BURLINGTON RESOURCES OIL & GAS COMPANY") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "grey"}]);
+            continue;
+          }else if (wells[i].operator === "STATOIL OIL & GAS LP") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "brown"}]);
+            continue;
+          }else if (wells[i].operator === "AMERADA HESS CORPORATION") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "steelblue"}]);
+            continue;
+          }else if (wells[i].operator === "DENBURY ONSHORE, LLC") {
+            companyColorArray.push([{company: wells[i].operator}, {color: "lightgrey"}]);
+            continue;
+          }
+          
           companyColorArray.push([{company: wells[i].operator}, {color: randomColor()}]);
         }
       }
@@ -55,7 +87,7 @@ var scatter = function(wells, map, mapMarkers) {
     };
     assignColorToWellByCompany(wells);
 
-    googleMapAScatter(wells, map, mapMarkers);
+    // googleMapAScatter(wells, map, mapMarkers);
 
     var toolTip = d3.select("body").append("div")
       .attr("class", "tooltip")
@@ -152,6 +184,9 @@ var scatter = function(wells, map, mapMarkers) {
     d3.select('svg')
     .on('click', function() {
       d3.json("/api/nd.json", update);
+      d3.selectAll("circle")
+        .attr("transform", "translate(0, 0)")
+        .transition();
     });
   };
 

@@ -2,10 +2,16 @@
 function googleMapAScatter(wells, map, mapMarkers) {
 
   console.log('mapMarkers length before: ', mapMarkers.length);
-  for (var i = 0; i < mapMarkers.length; i++) {
-    mapMarkers[i].setMap(null);
-  }
+
+  var clearMarkers = function(mapMarkers) {
+    for (var i = 0; i < mapMarkers.length; i++) {
+      mapMarkers[i].setMap(null);
+    }
+    mapMarkers = [];
+    mapMarkers.length = 0;
+  };
   // mapMarkers = [];
+  clearMarkers(mapMarkers);
 
   wells.forEach(function(well) {
     var marker = new google.maps.Marker({
@@ -27,7 +33,7 @@ function googleMapAScatter(wells, map, mapMarkers) {
     });
 
   });
-  
+
   // mapMarkers = [];
 
   console.log('mapMarkers length after: ', mapMarkers.length);

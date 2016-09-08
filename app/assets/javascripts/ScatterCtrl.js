@@ -164,7 +164,6 @@ window.requestInterval = function(fn, delay) {
         ceil: 2016,
         step: 1,
         draggableRange: true
-
       }
     };
 

@@ -87,8 +87,7 @@ var scatter = function(wells, map, mapMarkers) {
     };
     assignColorToWellByCompany(wells);
 
-    // googleMapAScatter(wells, map, mapMarkers);
-    yearlyTotalBar();
+    googleMapAScatter(wells, map, mapMarkers);
 
     var toolTip = d3.select("body").append("div")
       .attr("class", "tooltip")

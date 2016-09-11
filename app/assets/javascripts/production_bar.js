@@ -53,7 +53,7 @@ function proBar(well) {
       .attr("x", width / 2)
       .attr("y", 50)
       .style("text-anchor", "middle")
-      .text("Bbls of Oil Per Month for Life of the Well");
+      .text("Bbls of Oil Per Month Over Life of the Well");
 
     svg.append("g")
       .attr("class", "yAxis")

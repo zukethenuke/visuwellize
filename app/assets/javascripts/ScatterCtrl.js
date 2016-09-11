@@ -105,6 +105,7 @@ window.requestInterval = function(fn, delay) {
         var params = {};
         console.log("isPaused: ",isPaused);
         if(!isPaused) {
+          // yearlyTotalBar(yearIndex);
           params = {"start_year": startYear(), "end_year": endYear()};
           $http.post("/api/nd/animation", params).then(function(response) {
             scatter(response.data, map, mapMarkers);

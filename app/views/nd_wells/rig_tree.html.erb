@@ -1,4 +1,5 @@
 <style type="text/css">
+
   .node, .link {
     cursor: pointer;
   }
@@ -31,26 +32,47 @@
   }
 
   .ghostCircle.show{
-      display:block;
+    display:block;
   }
 
   .ghostCircle, .activeDrag .ghostCircle{
-       display: none;
+    display: none;
   }
+
+  #tree-container {
+    opacity: 0.9;
+    position: relative;
+    width: 90%;
+    margin: auto;
+  }
+
+  
 
 </style>
 
-<h1>rig tree</h1>
-<div id="option">
-  <input name="updateButton" 
-    id="collapse-button"
-    type="button" 
-    value="Collapse All"/>
-  <input name="updateButton" 
-    id="expand-button"
-    type="button" 
-    value="Expaned All"/>
+<div class="se-pre-con"></div>
+
+<div class="rig-image">
+  <div id="tree-container">
+    <h1>rig tree</h1>
+    <div id="option">
+      <input name="updateButton" 
+        id="collapse-button"
+        type="button" 
+        value="Collapse All"/>
+      <input name="updateButton" 
+        id="expand-button"
+        type="button" 
+        value="Expaned All"/>
+    </div>
+  </div>
 </div>
-<div id="tree-container"></div>
-<script>makeTree()</script>
+</div>
+<script>
+  $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+  makeTree();
+</script>
 

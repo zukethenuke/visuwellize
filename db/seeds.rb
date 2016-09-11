@@ -55,7 +55,7 @@ require 'csv'
 
 # ------------------------------------------------------------------
 # seed ndoperators table with info from ndwells table
-x = NdWell.all
+# x = NdWell.all
 # operators = []
 
 # x.each do |well|
@@ -69,11 +69,11 @@ x = NdWell.all
 # end
 
 # assign operator_id to wells in nd_wells table
-x.each do |well|
-  well_operator = NdOperator.find_by(name: well.operator)
-  well.nd_operator_id = well_operator.id
-  well.save
-end
+# x.each do |well|
+#   well_operator = NdOperator.find_by(name: well.operator)
+#   well.nd_operator_id = well_operator.id
+#   well.save
+# end
 
 # populate nd_operators well_count
 x = NdOperator.all

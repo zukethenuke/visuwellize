@@ -56,17 +56,17 @@ require 'csv'
 # ------------------------------------------------------------------
 # seed ndoperators table with info from ndwells table
 x = NdWell.all
-operators = []
+# operators = []
 
-x.each do |well|
-  operators << well.operator
-end
+# x.each do |well|
+#   operators << well.operator
+# end
 
-operators = operators.uniq!
+# operators = operators.uniq!
 
-operators.each do |op|
-  NdOperator.create(name: op)
-end
+# operators.each do |op|
+#   NdOperator.create(name: op)
+# end
 
 # assign operator_id to wells in nd_wells table
 x.each do |well|

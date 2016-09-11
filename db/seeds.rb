@@ -76,29 +76,29 @@ require 'csv'
 # end
 
 # populate nd_operators well_count
-x = NdOperator.all
+# x = NdOperator.all
 
-x.each do |op|
-  wc = op.nd_wells.count
-  op.well_count = wc
-  op.save
-end
+# x.each do |op|
+#   wc = op.nd_wells.count
+#   op.well_count = wc
+#   op.save
+# end
  
 #-------------------------------------------------------
 
 # add drilling contractor and rig to nd_wells
-# wells = NdWell.all
-# rigs = File.open(Rails.root.join('lib', 'seeds', 'wells_and_rigs.csv'))
+wells = NdWell.all
+rigs = File.open(Rails.root.join('lib', 'seeds', 'wells_and_rigs.csv'))
 
-# CSV.foreach(rigs, :headers => true, :header_converters => :symbol) do |row|
-#   wells.each do |well|
-#     # p row[0]
-#     # p well.id
-#     if row[0] == well.id.to_s
-#       well.drilling_contractor = row[1]
-#       well.rig = row[2]
-#       p well.id
-#       well.save
-#     end
-#   end
-# end
+CSV.foreach(rigs, :headers => true, :header_converters => :symbol) do |row|
+  wells.each do |well|
+    # p row[0]
+    # p well.id
+    if row[0] == well.id.to_s
+      well.drilling_contractor = row[1]
+      well.rig = row[2]
+      p well.id
+      well.save
+    end
+  end
+end

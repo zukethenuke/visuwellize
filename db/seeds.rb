@@ -25,6 +25,7 @@ CSV.foreach(csv_file, :headers => true, :header_converters => :symbol) do |row|
     well_status: row[:well_status],
     cum_oil: row[:cum_oil]
   )
+  
 end
 
 # hashes = []  # peter

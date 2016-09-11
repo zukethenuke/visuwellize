@@ -80,7 +80,7 @@ x = NdOperator.all
 
 x.each do |op|
   wc = op.nd_wells.count
-  op.well_count = well_count
+  op.well_count = wc
   op.save
 end
  

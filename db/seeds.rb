@@ -25,7 +25,7 @@ require 'csv'
 #     well_status: row[:well_status],
 #     cum_oil: row[:cum_oil]
 #   )
-  
+
 # end
 
 # hashes = []  # peter
@@ -71,7 +71,7 @@ x = NdWell.all
 # assign operator_id to wells in nd_wells table
 x.each do |well|
   well_operator = NdOperator.find_by(name: well.operator)
-  well.operator_id = well_operator.id
+  well.nd_operator_id = well_operator.id
   well.save
 end
 

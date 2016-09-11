@@ -33,25 +33,25 @@ csv_file = File.open(Rails.root.join('lib', 'seeds', 'monthly_production_info_re
 CSV.foreach(csv_file, :headers => true, :header_converters => :symbol) do |row|
   p row[:nd_well_id]
   
-#   NdMonthlyProduction.create(
-#     nd_well_id: row[:nd_well_id],
-#     pool: row[:pool],
-#     date: row[:date],
-#     bbls_oil: row[:bbls_oil],
-#     bbls_water: row[:bbls_water],
-#     mcf_prod: row[:mcf_prod]
-#   )
-
-  hashes << {   # peter, seed everything at once
+  NdMonthlyProduction.create(
     nd_well_id: row[:nd_well_id],
     pool: row[:pool],
-    date: row[:date],                 
+    date: row[:date],
     bbls_oil: row[:bbls_oil],
     bbls_water: row[:bbls_water],
     mcf_prod: row[:mcf_prod]
-  }
+  )
+
+#   hashes << {   # peter, seed everything at once
+#     nd_well_id: row[:nd_well_id],
+#     pool: row[:pool],
+#     date: row[:date],                 
+#     bbls_oil: row[:bbls_oil],
+#     bbls_water: row[:bbls_water],
+#     mcf_prod: row[:mcf_prod]
+#   }
 end
-NdMonthlyProduction.create(hashes) # peter
+# NdMonthlyProduction.create(hashes) # peter
 
 # ------------------------------------------------------------------
 # seed ndoperators table with info from ndwells table

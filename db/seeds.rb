@@ -28,10 +28,10 @@ require 'csv'
   
 # end
 
-hashes = []  # peter
-csv_file = File.open(Rails.root.join('lib', 'seeds', 'monthly_production_info_reduced_for_database.csv'))
-CSV.foreach(csv_file, :headers => true, :header_converters => :symbol) do |row|
-  p row[:nd_well_id]
+# hashes = []  # peter
+# csv_file = File.open(Rails.root.join('lib', 'seeds', 'monthly_production_info_reduced_for_database.csv'))
+# CSV.foreach(csv_file, :headers => true, :header_converters => :symbol) do |row|
+#   p row[:nd_well_id]
   
 #   NdMonthlyProduction.create(
 #     nd_well_id: row[:nd_well_id],
@@ -42,47 +42,47 @@ CSV.foreach(csv_file, :headers => true, :header_converters => :symbol) do |row|
 #     mcf_prod: row[:mcf_prod]
 #   )
 
-  hashes << {   # peter, seed everything at once
-    nd_well_id: row[:nd_well_id],
-    pool: row[:pool],
-    date: row[:date],                 
-    bbls_oil: row[:bbls_oil],
-    bbls_water: row[:bbls_water],
-    mcf_prod: row[:mcf_prod]
-  }
-end
-NdMonthlyProduction.create(hashes) # peter
+#   hashes << {   # peter, seed everything at once
+#     nd_well_id: row[:nd_well_id],
+#     pool: row[:pool],
+#     date: row[:date],                 
+#     bbls_oil: row[:bbls_oil],
+#     bbls_water: row[:bbls_water],
+#     mcf_prod: row[:mcf_prod]
+#   }
+# end
+# NdMonthlyProduction.create(hashes) # peter
 
 # ------------------------------------------------------------------
 # seed ndoperators table with info from ndwells table
-# x = NdWell.all
-# operators = []
+x = NdWell.all
+operators = []
 
-# x.each do |well|
-#   operators << well.operator
-# end
+x.each do |well|
+  operators << well.operator
+end
 
-# operators = operators.uniq!
+operators = operators.uniq!
 
-# operators.each do |op|
-#   NdOperator.create(name: op)
-# end
+operators.each do |op|
+  NdOperator.create(name: op)
+end
 
 # assign operator_id to wells in nd_wells table
-# x.each do |well|
-#   well_operator = NdOperator.find_by(name: well.operator)
-#   well.operator_id = well_operator.id
-#   well.save
-# end
+x.each do |well|
+  well_operator = NdOperator.find_by(name: well.operator)
+  well.operator_id = well_operator.id
+  well.save
+end
 
 # populate nd_operators well_count
-# x = NdOperator.all
+x = NdOperator.all
 
-# x.each do |op|
-#   wc = op.nd_wells.count
-#   op.well_count = well_count
-#   op.save
-# end
+x.each do |op|
+  wc = op.nd_wells.count
+  op.well_count = well_count
+  op.save
+end
  
 #-------------------------------------------------------
 

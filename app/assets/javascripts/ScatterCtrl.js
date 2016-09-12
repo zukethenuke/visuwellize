@@ -77,13 +77,13 @@ window.requestInterval = function(fn, delay) {
       var isPaused = false;
 
       $('.pause').on('click', function(e) {
-        e.preventDefault();
+        // e.preventDefault();
         isPaused = true;
         console.log(isPaused);
       });
 
       $('.play').on('click', function(e) {
-        e.preventDefault();
+        // e.preventDefault();
         isPaused = false;
         console.log(isPaused);
       });

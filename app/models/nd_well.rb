@@ -28,8 +28,10 @@ class NdWell < ActiveRecord::Base
       else
         dcs = dc_array # fix nil bug if only on well
       end
-      dcs.each do |dc|
-        operator["children"] << {"name" => dc, "children" => []}
+      if !dcs.nil?
+        dcs.each do |dc|
+          operator["children"] << {"name" => dc, "children" => []}
+        end
       end
     end
     NdWell.rig_branch(wells, tree)

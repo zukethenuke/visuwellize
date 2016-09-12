@@ -2,7 +2,7 @@
 
 function proBar(well) {
   var operatorColor = well.color;
-  d3.json("http://localhost:3000/api/nd/" + well.id, function(well) {
+  d3.json("/api/nd/" + well.id, function(well) {
 
     d3.selectAll(".bar_graph").remove();
 

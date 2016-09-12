@@ -49,6 +49,19 @@
   }
 </style>
 <!-- <body> -->
+
+<!-- Modal Structure -->
+<div id="readMe" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+  </div>
+</div>
+
+
 <div class="container">
   <div id="tooltip"></div><!-- div to hold tooltip. -->
   <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
@@ -56,13 +69,19 @@
 
 <script>
 
-  function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
-    return "<h4>"+n+"</h4><table>"+
-      // "<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-      // "<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-      // "<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
-      "</table>";
-  }
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal-trigger').leanModal();
+  $('#readMe').openModal();
+});
+
+function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
+  return "<h4>"+n+"</h4><table>"+
+    // "<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
+    // "<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
+    // "<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
+    "</table>";
+}
   
   var sampleData ={}; /* Sample random data. */ 
   ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",

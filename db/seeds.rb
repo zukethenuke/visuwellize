@@ -29,18 +29,18 @@ require 'csv'
 # end
 
 # hashes = []  # peter
-# csv_file = File.open(Rails.root.join('lib', 'seeds', 'monthly_production_info_reduced_for_database.csv'))
-# CSV.foreach(csv_file, :headers => true, :header_converters => :symbol) do |row|
-#   p row[:nd_well_id]
+csv_file = File.open(Rails.root.join('lib', 'seeds', 'monthly_production_info_reduced_for_database.csv'))
+CSV.foreach(csv_file, :headers => true, :header_converters => :symbol) do |row|
+  p row[:nd_well_id]
   
-#   NdMonthlyProduction.create(
-#     nd_well_id: row[:nd_well_id],
-#     pool: row[:pool],
-#     date: row[:date],
-#     bbls_oil: row[:bbls_oil],
-#     bbls_water: row[:bbls_water],
-#     mcf_prod: row[:mcf_prod]
-#   )
+  NdMonthlyProduction.create(
+    nd_well_id: row[:nd_well_id],
+    pool: row[:pool],
+    date: row[:date],
+    bbls_oil: row[:bbls_oil],
+    bbls_water: row[:bbls_water],
+    mcf_prod: row[:mcf_prod]
+  )
 
 #   hashes << {   # peter, seed everything at once
 #     nd_well_id: row[:nd_well_id],
@@ -50,7 +50,7 @@ require 'csv'
 #     bbls_water: row[:bbls_water],
 #     mcf_prod: row[:mcf_prod]
 #   }
-# end
+end
 # NdMonthlyProduction.create(hashes) # peter
 
 # ------------------------------------------------------------------
@@ -87,18 +87,18 @@ require 'csv'
 #-------------------------------------------------------
 
 # add drilling contractor and rig to nd_wells
-wells = NdWell.all
-rigs = File.open(Rails.root.join('lib', 'seeds', 'wells_and_rigs.csv'))
+# wells = NdWell.all
+# rigs = File.open(Rails.root.join('lib', 'seeds', 'wells_and_rigs.csv'))
 
-CSV.foreach(rigs, :headers => true, :header_converters => :symbol) do |row|
-  wells.each do |well|
-    # p row[0]
-    # p well.id
-    if row[0] == well.id.to_s
-      well.drilling_contractor = row[1]
-      well.rig = row[2]
-      p well.id
-      well.save
-    end
-  end
-end
+# CSV.foreach(rigs, :headers => true, :header_converters => :symbol) do |row|
+#   wells.each do |well|
+#     # p row[0]
+#     # p well.id
+#     if row[0] == well.id.to_s
+#       well.drilling_contractor = row[1]
+#       well.rig = row[2]
+#       p well.id
+#       well.save
+#     end
+#   end
+# end

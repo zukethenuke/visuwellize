@@ -59,7 +59,7 @@ window.requestInterval = function(fn, delay) {
 (function() {
   "use strict";
 
-  angular.module("app").controller("scatterCtrl", function($scope, $http) {
+  angular.module("app").controller("scatterCtrl",["$scope", "$http", function($scope, $http) {
     
     var map = new google.maps.Map(document.getElementById('googleMap'), {
       zoom: 7,
@@ -205,5 +205,5 @@ window.requestInterval = function(fn, delay) {
 
     
     window.$scope = $scope;
-  });
+  }]);
 })();

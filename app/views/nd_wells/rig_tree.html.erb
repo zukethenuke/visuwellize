@@ -50,11 +50,21 @@
 
 </style>
 
-<div class="se-pre-con"></div>
+<!-- Readme Modal Structure -->
+<div id="readMe" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat play">Ok</a>
+  </div>
+</div>
 
 <div class="rig-image">
   <div id="tree-container">
-    <h1>Rig Tree</h1>
+    <h1>Rig Tree!!</h1>
+    <img class='loading-gif' src="<%= asset_path 'blow_out.gif' %>" alt="" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <div id="option">
       <input name="updateButton" 
         id="collapse-button"
@@ -69,11 +79,21 @@
 </div>
 </div>
 <script>
-  makeTree();
-  
-  $(window).load(function() {
-    // Animate loader off screen
-    $(".se-pre-con").fadeOut("slow");;
+  makeTree(function() {
+    $(".loading-gif").fadeOut("slow");
+
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        in_duration: 300, // Transition in duration
+        out_duration: 200, // Transition out duration
+        starting_top: '4%', // Starting top style attribute
+        ending_top: '10%' // Ending top style attribute
+      });
+      $('#readMe').openModal();
+    });
+
   });
-  
 </script>

@@ -1,4 +1,4 @@
-var makeTree = function() {
+var makeTree = function(callback) {
 // Get JSON data
 treeJSON = d3.json("/api/nd/rig_tree", function(error, treeData) {
 console.log(treeData);
@@ -570,5 +570,7 @@ console.log(treeJSON);
     // Layout the tree initially and center on the root node.
     update(root);
     centerNode(root);
+    
+    callback();
 });
 };

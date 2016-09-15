@@ -7,7 +7,7 @@ function proBar(well) {
     d3.selectAll(".bar_graph").remove();
 
     var margin = {top: 20, right:20, bottom: 150, left: 62};
-    var width = 960 - margin.left - margin.right;
+    var width = $(window).width() / 1.6 - margin.left - margin.right;
     var height = 300 - margin.top - margin.bottom;
 
     var fixDate = function(well) {

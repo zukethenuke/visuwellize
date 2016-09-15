@@ -1,7 +1,7 @@
 var scatter = function(wells, map, mapMarkers) {
 
   var margin = {top: 20, right:20, bottom: 100, left: 62};
-  var width = 960 - margin.left - margin.right;
+  var width = 800 - margin.left - margin.right;
   var height = 450 - margin.top - margin.bottom;
 
   var svg = d3.select("#scatter")

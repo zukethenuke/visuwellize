@@ -35,7 +35,6 @@ class Api::NdWellsController < ApplicationController
 
   def rig_tree
     @tree = NdWell.c #reate_rig_tree
-    p @tree
     # @drilling_contractors = NdWells.select(:drilling_contractor).distinct
     render 'rig_tree.json.jbuilder'
   end

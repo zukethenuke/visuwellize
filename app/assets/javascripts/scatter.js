@@ -110,7 +110,8 @@ var scatter = function(wells, map, mapMarkers) {
 
     var xAxis = d3.svg.axis()
       .scale(xScale)
-      .orient("bottom");
+      .orient("bottom")
+      .tickFormat(d3.time.format("%Y-%b"));
 
     var yAxis = d3.svg.axis()
       .scale(yScale)
@@ -124,6 +125,12 @@ var scatter = function(wells, map, mapMarkers) {
     var yg = d3.select('.yAxis')
       // .transition()
       .call(yAxis);
+
+    d3.select('.xAxis')
+      .selectAll("text")
+      .attr("y", -5)
+      .attr("x", -40)
+      .attr("transform", "rotate(-45)");
 
     d3.select('.xAxis')
       .append("text")

@@ -8,7 +8,7 @@
     var map = new google.maps.Map(document.getElementById('googleMap'), {
       zoom: 7,
       minZoom: 7,
-      center: {lat: 47.484052, lng: -100.442734}
+      center: {lat: 47.3061, lng: -102.2043}
     });
     var mapMarkers = [];
 
@@ -65,7 +65,7 @@
         // if (yearIndex > 40) {
           clearInterval(year_interval);
         }
-      }, 2000, isPaused);
+      }, 2500, isPaused);
     };
 
     $(document).ready(function(){

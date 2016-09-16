@@ -43,6 +43,7 @@
     opacity: 0.9;
     position: relative;
     width: 90%;
+    height: 80vh;
     margin: auto;
   }
 
@@ -64,10 +65,12 @@
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat play">Ok</a>
   </div>
 </div>
+<br>
 
-<div class="rig-image" style="background: image-url(<%= asset_path 'DSCN0234-min.JPG' %>); width: 100%; height: 800px; background-size: cover; background-repeat: no-repeat;">
+<div class="rig-image" style="background: image-url(<%= asset_path 'DSCN0234-min.JPG' %>); margin: auto; width: 98vw; height: 85vh; background-size: cover; background-repeat: no-repeat;">
   <div id="tree-container">
-    <h1>Rig Tree!!</h1>
+    <br>
+    <!-- <h1>Rig Tree!!</h1> -->
     <img class='loading-gif' src="<%= asset_path 'blow_out.gif' %>" alt="" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <div id="option">
       <input name="updateButton" 

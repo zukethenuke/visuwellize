@@ -189,10 +189,10 @@ var scatter = function(wells, map, mapMarkers) {
         .style("opacity", 0);
     });
 
-    d3.select('svg')
-    .on('click', function() {
-      d3.json("/api/nd.json", update);
-    });
+    // d3.select('svg')
+    // .on('click', function() {
+    //   d3.json("/api/nd.json", update);
+    // });
   };
 
   update(wells);

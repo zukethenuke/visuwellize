@@ -50,7 +50,7 @@ var scatter = function(wells, map, mapMarkers) {
             companyColorArray.push([{company: wells[i].operator}, {color: "red"}]);
             continue;
           }else if (wells[i].operator === "WHITING OIL AND GAS CORPORATION") {
-            companyColorArray.push([{company: wells[i].operator}, {color: "purple"}]);
+            companyColorArray.push([{company: wells[i].operator}, {color: "#9932CC"}]);
             continue;
           }else if (wells[i].operator === "XTO ENERGY INC.") {
             companyColorArray.push([{company: wells[i].operator}, {color: "yellow"}]);

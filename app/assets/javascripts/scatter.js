@@ -42,8 +42,8 @@ var scatter = function(wells, map, mapMarkers) {
       var companyColorArray = [];
       for (var i = 0; i < wells.length; i++) {
         if (companyArray.indexOf(wells[i].operator) === -1) {
-          companyArray.push(wells[i].operator);
-          if (wells[i].operator === "CONTINENTAL RESOURCES, INC.") {
+          companyArray.push(wells[i].operator);  
+          if (wells[i].operator === "CONTINENTAL RESOURCES, INC.") { // hard code 10 largest companies, other are assigned randomly
             companyColorArray.push([{company: wells[i].operator}, {color: "blue"}]);
             continue;
           }else if (wells[i].operator === "HESS BAKKEN INVESTMENTS II, LLC") {
@@ -61,7 +61,7 @@ var scatter = function(wells, map, mapMarkers) {
           }else if (wells[i].operator === "OASIS PETROLEUM NORTH AMERICA LLC") {
             companyColorArray.push([{company: wells[i].operator}, {color: "orange"}]);
             continue;
-          }else if (wells[i].operator === "BURLINGTON RESOURCES OIL & GAS COMPANY") {
+          }else if (wells[i].operator === "BURLINGTON RESOURCES OIL & GAS COMPANY LP") {
             companyColorArray.push([{company: wells[i].operator}, {color: "grey"}]);
             continue;
           }else if (wells[i].operator === "STATOIL OIL & GAS LP") {
